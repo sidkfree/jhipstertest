@@ -1,0 +1,32 @@
+{
+  "name": "SubTask",
+  "fields": [
+    {
+      "fieldName": "title",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "relationships": [
+    {
+      "relationshipType": "one-to-many",
+      "otherEntityName": "task",
+      "otherEntityRelationshipName": "idParent",
+      "relationshipName": "task"
+    }
+  ],
+  "changelogDate": "20210302091107",
+  "entityTableName": "sub_task",
+  "dto": "no",
+  "pagination": "no",
+  "service": "serviceImpl",
+  "jpaMetamodelFiltering": false,
+  "fluentMethods": true,
+  "readOnly": false,
+  "embedded": false,
+  "clientRootFolder": "",
+  "applications": "*"
+}
