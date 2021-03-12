@@ -1,0 +1,5153 @@
+entity AccountingAccount {
+	rowid Integer required,
+	entity Integer required,
+	datec Instant,
+	tms Instant required,
+	pcgType String required maxlength(20),
+	pcgSubtype String required maxlength(20),
+	accountNumber String required maxlength(32),
+	accountParent Integer,
+	label String required maxlength(255),
+	fkAccountingCategory Integer,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	active Boolean required,
+	importKey String maxlength(14),
+	extraparams String maxlength(255)
+}
+
+entity AccountingBookkeeping {
+	rowid Integer required,
+	entity Integer required,
+	docDate LocalDate required,
+	docType String required maxlength(30),
+	docRef String required maxlength(300),
+	fkDoc Integer required,
+	fkDocdet Integer required,
+	thirdpartyCode String maxlength(32),
+	numeroCompte String maxlength(20),
+	labelCompte String maxlength(255),
+	labelOperation String maxlength(255),
+	debit Double,
+	credit Double,
+	montant Double,
+	sens String maxlength(1),
+	multicurrencyAmount Double,
+	multicurrencyCode String maxlength(255),
+	letteringCode String maxlength(255),
+	dateLettering Instant,
+	fkUserAuthor Integer required,
+	fkUserModif Integer,
+	dateCreation Instant,
+	tms Instant required,
+	importKey String maxlength(14),
+	codeJournal String maxlength(32),
+	journalLabel String maxlength(255),
+	pieceNum Integer required,
+	dateValidated Instant,
+	dateExport Instant,
+	subledgerAccount String maxlength(32),
+	subledgerLabel String maxlength(255),
+	extraparams String maxlength(255),
+	dateLimReglement Instant,
+	fkUser Integer
+}
+
+entity AccountingBookkeepingTmp {
+	rowid Integer required,
+	entity Integer required,
+	docDate LocalDate required,
+	docType String required maxlength(30),
+	docRef String required maxlength(300),
+	fkDoc Integer required,
+	fkDocdet Integer required,
+	thirdpartyCode String maxlength(32),
+	subledgerAccount String maxlength(32),
+	subledgerLabel String maxlength(255),
+	numeroCompte String maxlength(32),
+	labelCompte String required maxlength(255),
+	labelOperation String maxlength(255),
+	debit Double required,
+	credit Double required,
+	montant Double required,
+	sens String maxlength(1),
+	multicurrencyAmount Double,
+	multicurrencyCode String maxlength(255),
+	letteringCode String maxlength(255),
+	dateLettering Instant,
+	fkUserAuthor Integer required,
+	fkUserModif Integer,
+	dateCreation Instant,
+	tms Instant required,
+	importKey String maxlength(14),
+	codeJournal String required maxlength(32),
+	journalLabel String maxlength(255),
+	pieceNum Integer required,
+	dateValidated Instant,
+	extraparams String maxlength(255),
+	dateLimReglement Instant,
+	fkUser Integer
+}
+
+entity AccountingFiscalyear {
+	rowid Integer required,
+	label String required maxlength(128),
+	dateStart LocalDate,
+	dateEnd LocalDate,
+	statut Boolean required,
+	entity Integer required,
+	datec Instant required,
+	tms Instant required,
+	fkUserAuthor Integer,
+	fkUserModif Integer
+}
+
+entity AccountingJournal {
+	rowid Integer required,
+	code String maxlength(20),
+	label String required maxlength(128),
+	nature Integer required,
+	active Integer,
+	entity Integer
+}
+
+entity AccountingSystem {
+	rowid Integer required,
+	pcgVersion String required maxlength(32),
+	label String required maxlength(128),
+	active Integer,
+	fkCountry Integer
+}
+
+entity Actioncomm {
+	id Integer required,
+	refExt String maxlength(255),
+	entity Integer required,
+	datep Instant,
+	datep2 Instant,
+	fkAction Integer,
+	code String maxlength(50),
+	datec Instant,
+	tms Instant required,
+	fkUserAuthor Integer,
+	fkUserMod Integer,
+	fkProject Integer,
+	fkSoc Integer,
+	fkContact Integer,
+	fkParent Integer required,
+	fkUserAction Integer,
+	fkUserDone Integer,
+	transparency Integer,
+	priority Integer,
+	fulldayevent Integer required,
+	punctual Integer required,
+	percent Integer required,
+	location String maxlength(128),
+	durationp Double,
+	label String required maxlength(255),
+	note String maxlength(255),
+	emailSubject String maxlength(256),
+	emailMsgid String maxlength(256),
+	emailFrom String maxlength(256),
+	emailSender String maxlength(256),
+	emailTo String maxlength(256),
+	emailTocc String maxlength(256),
+	emailTobcc String maxlength(256),
+	errorsTo String maxlength(256),
+	recurid String maxlength(128),
+	recurrule String maxlength(128),
+	recurdateend Instant,
+	fkElement Integer,
+	elementtype String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	callingDuration Integer,
+	visibility String maxlength(12)
+}
+
+entity ActioncommExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity ActioncommReminder {
+	rowid Integer required,
+	dateremind Instant required,
+	typeremind String required maxlength(32),
+	fkUser Integer required,
+	offsetvalue Integer required,
+	offsetunit String required maxlength(1),
+	status Integer required
+}
+
+entity ActioncommResources {
+	rowid Integer required,
+	fkActioncomm Integer required,
+	elementType String required maxlength(50),
+	fkElement Integer required,
+	answerStatus String maxlength(50),
+	mandatory Integer,
+	transparency Integer
+}
+
+entity Adherent {
+	rowid Integer required,
+	entity Integer required,
+	refExt String maxlength(128),
+	civility String maxlength(6),
+	lastname String maxlength(50),
+	firstname String maxlength(50),
+	login String maxlength(50),
+	pass String maxlength(50),
+	passCrypted String maxlength(128),
+	morphy String required maxlength(3),
+	societe String maxlength(128),
+	address String maxlength(255),
+	zip String maxlength(30),
+	town String maxlength(50),
+	stateId Integer,
+	country Integer,
+	email String maxlength(255),
+	skype String maxlength(255),
+	phone String maxlength(30),
+	phonePerso String maxlength(30),
+	phoneMobile String maxlength(30),
+	birth LocalDate,
+	photo String maxlength(255),
+	statut Integer required,
+	public Integer required,
+	datefin Instant,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	datevalid Instant,
+	datec Instant,
+	tms Instant required,
+	fkUserAuthor Integer,
+	fkUserMod Integer,
+	fkUserValid Integer,
+	canvas String maxlength(32),
+	importKey String maxlength(14),
+	twitter String maxlength(255),
+	facebook String maxlength(255),
+	instagram String maxlength(255),
+	snapchat String maxlength(255),
+	googleplus String maxlength(255),
+	youtube String maxlength(255),
+	whatsapp String maxlength(255),
+	linkedin String maxlength(255),
+	gender String maxlength(10)
+}
+
+entity AdherentExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity AdherentType {
+	rowid Integer required,
+	entity Integer required,
+	tms Instant required,
+	statut Integer required,
+	libelle String required maxlength(50),
+	subscription String required maxlength(3),
+	vote String required maxlength(3),
+	note String maxlength(255),
+	mailValid String maxlength(255),
+	morphy String maxlength(3)
+}
+
+entity AdherentTypeExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Advtargetemailing {
+	rowid Integer required,
+	name String required maxlength(200),
+	entity Integer required,
+	filtervalue String maxlength(255),
+	fkUserAuthor Integer required,
+	datec Instant required,
+	fkUserMod Integer required,
+	tms Instant required,
+	fkElement Integer required,
+	typeElement String required maxlength(180)
+}
+
+entity Asset {
+	rowid Integer required,
+	ref String required maxlength(128),
+	entity Integer required,
+	label String maxlength(255),
+	amountHt Double,
+	amountVat Double,
+	description String maxlength(255),
+	notePublic String maxlength(255),
+	notePrivate String maxlength(255),
+	dateCreation Instant required,
+	tms Instant required,
+	fkUserCreat Integer required,
+	fkUserModif Integer,
+	importKey String maxlength(14),
+	status Integer required
+}
+
+entity AssetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity AssetType {
+	rowid Integer required,
+	entity Integer required,
+	tms Instant required,
+	label String required maxlength(50),
+	accountancyCodeAsset String maxlength(32),
+	accountancyCodeDepreciationAsset String maxlength(32),
+	accountancyCodeDepreciationExpense String maxlength(32),
+	note String maxlength(255)
+}
+
+entity AssetTypeExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Bank {
+	rowid Integer required,
+	datec Instant,
+	tms Instant required,
+	datev LocalDate,
+	dateo LocalDate,
+	amount Double required,
+	label String maxlength(255),
+	fkAccount Integer,
+	fkUserAuthor Integer,
+	fkUserRappro Integer,
+	fkType String maxlength(6),
+	numReleve String maxlength(50),
+	numChq String maxlength(50),
+	rappro Boolean,
+	note String maxlength(255),
+	fkBordereau Integer,
+	banque String maxlength(255),
+	emetteur String maxlength(255),
+	author String maxlength(40),
+	numeroCompte String maxlength(32)
+}
+
+entity BankAccount {
+	rowid Integer required,
+	datec Instant,
+	tms Instant required,
+	ref String required maxlength(12),
+	label String required maxlength(30),
+	entity Integer required,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	bank String maxlength(60),
+	codeBanque String maxlength(128),
+	codeGuichet String maxlength(6),
+	number String maxlength(255),
+	cleRib String maxlength(5),
+	bic String maxlength(11),
+	ibanPrefix String maxlength(34),
+	countryIban String maxlength(2),
+	cleIban String maxlength(2),
+	domiciliation String maxlength(255),
+	stateId Integer,
+	fkPays Integer required,
+	proprio String maxlength(60),
+	ownerAddress String maxlength(255),
+	courant Integer required,
+	clos Integer required,
+	rappro Integer,
+	url String maxlength(128),
+	accountNumber String maxlength(32),
+	accountancyJournal String maxlength(20),
+	currencyCode String required maxlength(3),
+	minAllowed Integer,
+	minDesired Integer,
+	comment String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255)
+}
+
+entity BankAccountExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity BankCateg {
+	rowid Integer required,
+	label String maxlength(255),
+	entity Integer required
+}
+
+entity BankClass {
+	lineid Integer required,
+	fkCateg Integer required
+}
+
+entity BankUrl {
+	rowid Integer required,
+	fkBank Integer,
+	urlId Integer,
+	url String maxlength(255),
+	label String maxlength(255),
+	type String required maxlength(24)
+}
+
+entity Blockedlog {
+	rowid Integer required,
+	tms Instant required,
+	action String maxlength(50),
+	amounts Double required,
+	signature String required maxlength(100),
+	signatureLine String required maxlength(100),
+	element String maxlength(50),
+	fkObject Integer,
+	refObject String maxlength(255),
+	dateObject Instant,
+	objectData String maxlength(255),
+	fkUser Integer,
+	entity Integer required,
+	certified Integer,
+	dateCreation Instant,
+	userFullname String maxlength(255)
+}
+
+entity BlockedlogAuthority {
+	rowid Integer required,
+	blockchain TextBlob required,
+	signature String required maxlength(100),
+	tms Instant required
+}
+
+entity BomBom {
+	rowid Integer required,
+	entity Integer required,
+	ref String required maxlength(128),
+	label String maxlength(255),
+	description String maxlength(255),
+	notePublic String maxlength(255),
+	notePrivate String maxlength(255),
+	fkProduct Integer,
+	qty Double,
+	efficiency Double,
+	dateCreation Instant required,
+	tms Instant required,
+	dateValid Instant,
+	fkUserModif Integer,
+	fkUserValid Integer,
+	importKey String maxlength(14),
+	status Integer required
+}
+
+entity BomBomExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity BomBomline {
+	rowid Integer required,
+	fkProduct Integer required,
+	fkBomChild Integer,
+	description String maxlength(255),
+	importKey String maxlength(14),
+	qty Double required,
+	efficiency Double required,
+	rank Integer required
+}
+
+entity BomBomlineExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Bookmark {
+	rowid Integer required,
+	fkUser Integer required,
+	dateb Instant,
+	url String required maxlength(255),
+	target String maxlength(16),
+	title String maxlength(64),
+	favicon String maxlength(24),
+	position Integer,
+	entity Integer required
+}
+
+entity BordereauCheque {
+	rowid Integer required,
+	ref String required maxlength(30),
+	refExt String maxlength(255),
+	datec Instant required,
+	dateBordereau LocalDate,
+	amount Double required,
+	nbcheque Integer required,
+	fkBankAccount Integer,
+	fkUserAuthor Integer,
+	statut Integer required,
+	tms Instant required,
+	note String maxlength(255),
+	entity Integer required
+}
+
+entity Boxes {
+	rowid Integer required,
+	entity Integer required,
+	position Integer required,
+	boxOrder String required maxlength(3),
+	fkUser Integer required,
+	maxline Integer,
+	params String maxlength(255)
+}
+
+entity BoxesDef {
+	rowid Integer required,
+	file String required maxlength(200),
+	entity Integer required,
+	tms Instant required,
+	note String maxlength(130)
+}
+
+entity Budget {
+	rowid Integer required,
+	entity Integer required,
+	label String required maxlength(255),
+	status Integer,
+	note String maxlength(255),
+	dateStart LocalDate,
+	dateEnd LocalDate,
+	datec Instant,
+	tms Instant required,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	importKey Integer
+}
+
+entity BudgetLines {
+	rowid Integer required,
+	fkProjectIds String required maxlength(255),
+	amount Double required,
+	datec Instant,
+	tms Instant required,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	importKey Integer
+}
+
+entity CAccountingCategory {
+	rowid Integer required,
+	entity Integer required,
+	code String required maxlength(16),
+	label String required maxlength(255),
+	rangeAccount String required maxlength(255),
+	sens Boolean required,
+	categoryType Boolean required,
+	formula String required maxlength(255),
+	position Integer,
+	fkCountry Integer,
+	active Integer
+}
+
+entity CActionTrigger {
+	rowid Integer required,
+	elementtype String maxlength(32),
+	code String required maxlength(32),
+	label String required maxlength(128),
+	description String maxlength(255),
+	rang Integer
+}
+
+entity CActioncomm {
+	id Integer required,
+	code String required maxlength(12),
+	type String required maxlength(50),
+	libelle String required maxlength(48),
+	module String maxlength(16),
+	active Boolean required,
+	todo Boolean,
+	color String maxlength(9),
+	picto String maxlength(48),
+	position Integer required
+}
+
+entity CAvailability {
+	rowid Integer required,
+	code String required maxlength(30),
+	label String required maxlength(60),
+	active Boolean required
+}
+
+entity CBarcodeType {
+	rowid Integer required,
+	code String required maxlength(16),
+	entity Integer required,
+	libelle String required maxlength(50),
+	coder String required maxlength(16),
+	example String required maxlength(16)
+}
+
+entity CChargesociales {
+	id Integer required,
+	libelle String maxlength(80),
+	deductible Integer required,
+	active Boolean required,
+	code String required maxlength(12),
+	accountancyCode String maxlength(32),
+	fkPays Integer required,
+	module String maxlength(32)
+}
+
+entity CCivility {
+	rowid Integer required,
+	code String required maxlength(6),
+	label String maxlength(50),
+	active Boolean required,
+	module String maxlength(32)
+}
+
+entity CCountry {
+	rowid Integer required,
+	code String required maxlength(2),
+	codeIso String maxlength(3),
+	label String required maxlength(50),
+	active Boolean required,
+	favorite Boolean required
+}
+
+entity CCurrencies {
+	codeIso String required maxlength(3),
+	label String required maxlength(64),
+	unicode String maxlength(32),
+	active Boolean required
+}
+
+entity CDepartements {
+	rowid Integer required,
+	codeDepartement String required maxlength(6),
+	cheflieu String maxlength(50),
+	tncc Integer,
+	ncc String maxlength(50),
+	nom String maxlength(50),
+	active Boolean required
+}
+
+entity CEcotaxe {
+	rowid Integer required,
+	code String required maxlength(64),
+	label String maxlength(255),
+	price Double,
+	organization String maxlength(255),
+	fkPays Integer required,
+	active Boolean required
+}
+
+entity CEffectif {
+	id Integer required,
+	code String required maxlength(12),
+	libelle String maxlength(30),
+	active Boolean required,
+	module String maxlength(32)
+}
+
+entity CEmailSenderprofile {
+	rowid Integer required,
+	entity Integer required,
+	private Integer required,
+	dateCreation Instant,
+	tms Instant required,
+	label String maxlength(255),
+	email String maxlength(255),
+	signature String maxlength(255),
+	position Integer,
+	active Boolean required
+}
+
+entity CEmailTemplates {
+	rowid Integer required,
+	entity Integer required,
+	module String maxlength(32),
+	typeTemplate String maxlength(32),
+	lang String maxlength(6),
+	private Integer required,
+	fkUser Integer,
+	datec Instant,
+	tms Instant required,
+	label String maxlength(255),
+	position Integer,
+	active Boolean required,
+	topic String maxlength(255),
+	content TextBlob,
+	contentLines String maxlength(255),
+	enabled String maxlength(255),
+	joinfiles String maxlength(255)
+}
+
+entity CExpTaxCat {
+	rowid Integer required,
+	label String required maxlength(48),
+	entity Integer required,
+	active Integer required
+}
+
+entity CExpTaxRange {
+	rowid Integer required,
+	fkCExpTaxCat Integer required,
+	rangeIk Double required,
+	entity Integer required,
+	active Integer required
+}
+
+entity CFieldList {
+	rowid Integer required,
+	tms Instant required,
+	element String required maxlength(64),
+	entity Integer required,
+	name String required maxlength(32),
+	alias String required maxlength(32),
+	title String required maxlength(32),
+	align String maxlength(6),
+	sort Boolean required,
+	search Boolean required,
+	visible Boolean required,
+	enabled String maxlength(255),
+	rang Integer
+}
+
+entity CFormatCards {
+	rowid Integer required,
+	code String required maxlength(50),
+	name String required maxlength(50),
+	paperSize String required maxlength(20),
+	orientation String required maxlength(1),
+	metric String required maxlength(5),
+	leftmargin Double required,
+	topmargin Double required,
+	nx Integer required,
+	ny Integer required,
+	spacex Double required,
+	spacey Double required,
+	width Double required,
+	height Double required,
+	fontSize Integer required,
+	customX Double required,
+	customY Double required,
+	active Integer required
+}
+
+entity CFormeJuridique {
+	rowid Integer required,
+	code Integer required,
+	fkPays Integer required,
+	libelle String maxlength(255),
+	isvatexempted Boolean required,
+	active Boolean required,
+	module String maxlength(32),
+	position Integer required
+}
+
+entity CHolidayTypes {
+	rowid Integer required,
+	code String required maxlength(16),
+	label String required maxlength(255),
+	affect Integer required,
+	delay Integer required,
+	newbymonth Double required,
+	fkCountry Integer,
+	active Integer
+}
+
+entity CHrmDepartment {
+	rowid Integer required,
+	pos Boolean required,
+	code String required maxlength(16),
+	label String maxlength(50),
+	active Boolean required
+}
+
+entity CHrmFunction {
+	rowid Integer required,
+	pos Boolean required,
+	code String required maxlength(16),
+	label String maxlength(50),
+	cLevel Boolean required,
+	active Boolean required
+}
+
+entity CIncoterms {
+	rowid Integer required,
+	code String required maxlength(3),
+	libelle String required maxlength(255),
+	active Boolean required
+}
+
+entity CInputMethod {
+	rowid Integer required,
+	code String maxlength(30),
+	libelle String maxlength(60),
+	active Boolean required,
+	module String maxlength(32)
+}
+
+entity CInputReason {
+	rowid Integer required,
+	code String maxlength(30),
+	label String maxlength(60),
+	active Boolean required,
+	module String maxlength(32)
+}
+
+entity CLeadStatus {
+	rowid Integer required,
+	code String maxlength(10),
+	label String maxlength(50),
+	position Integer,
+	percent Double,
+	active Boolean required
+}
+
+entity CPaiement {
+	id Integer required,
+	entity Integer required,
+	code String required maxlength(6),
+	libelle String maxlength(62),
+	type Integer,
+	active Boolean required,
+	accountancyCode String maxlength(32),
+	module String maxlength(32),
+	position Integer required
+}
+
+entity CPaiementTemp {
+	id Integer required,
+	entity Integer required,
+	code String required maxlength(6),
+	libelle String maxlength(62),
+	type Integer,
+	active Boolean required,
+	accountancyCode String maxlength(32),
+	module String maxlength(32),
+	position Integer required
+}
+
+entity CPaperFormat {
+	rowid Integer required,
+	code String required maxlength(16),
+	label String required maxlength(50),
+	width Float,
+	height Float,
+	unit String required maxlength(5),
+	active Boolean required,
+	module String maxlength(32)
+}
+
+entity CPaymentTerm {
+	rowid Integer required,
+	entity Integer required,
+	code String maxlength(16),
+	sortorder Integer,
+	active Boolean,
+	libelle String maxlength(255),
+	libelleFacture String maxlength(255),
+	typeCdr Boolean,
+	nbjour Integer,
+	decalage Integer,
+	module String maxlength(32),
+	position Integer required
+}
+
+entity CPriceExpression {
+	rowid Integer required,
+	title String required maxlength(20),
+	expression String required maxlength(80)
+}
+
+entity CPriceGlobalVariable {
+	rowid Integer required,
+	code String required maxlength(20),
+	description String maxlength(255),
+	value Double
+}
+
+entity CPriceGlobalVariableUpdater {
+	rowid Integer required,
+	type Integer required,
+	description String maxlength(255),
+	parameters String maxlength(255),
+	fkVariable Integer required,
+	updateInterval Integer,
+	nextUpdate Integer,
+	lastStatus String maxlength(255)
+}
+
+entity CPropalst {
+	id Integer required,
+	code String required maxlength(12),
+	label String maxlength(30),
+	active Boolean required
+}
+
+entity CProspectlevel {
+	code String required maxlength(12),
+	label String maxlength(30),
+	sortorder Integer,
+	active Integer required,
+	module String maxlength(32)
+}
+
+entity CRegions {
+	rowid Integer required,
+	codeRegion Integer required,
+	fkPays Integer required,
+	cheflieu String maxlength(50),
+	tncc Integer,
+	nom String maxlength(100),
+	active Boolean required
+}
+
+entity CRevenuestamp {
+	rowid Integer required,
+	fkPays Integer required,
+	taux Double required,
+	note String maxlength(128),
+	active Boolean required,
+	accountancyCodeSell String maxlength(32),
+	accountancyCodeBuy String maxlength(32),
+	revenuestampType String required maxlength(16)
+}
+
+entity CShipmentMode {
+	rowid Integer required,
+	tms Instant required,
+	code String required maxlength(30),
+	libelle String required maxlength(50),
+	description String maxlength(255),
+	tracking String maxlength(255),
+	active Boolean,
+	module String maxlength(32)
+}
+
+entity CStcomm {
+	id Integer required,
+	code String required maxlength(12),
+	libelle String maxlength(30),
+	picto String maxlength(128),
+	active Boolean required
+}
+
+entity CTicketCategory {
+	rowid Integer required,
+	entity Integer,
+	code String required maxlength(32),
+	pos String required maxlength(32),
+	label String required maxlength(128),
+	active Integer,
+	useDefault Integer,
+	description String maxlength(255)
+}
+
+entity CTicketSeverity {
+	rowid Integer required,
+	entity Integer,
+	code String required maxlength(32),
+	pos String required maxlength(32),
+	label String required maxlength(128),
+	color String required maxlength(10),
+	active Integer,
+	useDefault Integer,
+	description String maxlength(255)
+}
+
+entity CTicketType {
+	rowid Integer required,
+	entity Integer,
+	code String required maxlength(32),
+	pos String required maxlength(32),
+	label String required maxlength(128),
+	active Integer,
+	useDefault Integer,
+	description String maxlength(255)
+}
+
+entity CTva {
+	rowid Integer required,
+	fkPays Integer required,
+	code String maxlength(10),
+	taux Double required,
+	localtax1 String required maxlength(20),
+	localtax1Type String required maxlength(10),
+	localtax2 String required maxlength(20),
+	localtax2Type String required maxlength(10),
+	recuperableonly Integer required,
+	note String maxlength(128),
+	active Boolean required,
+	accountancyCodeSell String maxlength(32),
+	accountancyCodeBuy String maxlength(32)
+}
+
+entity CTypeContact {
+	rowid Integer required,
+	element String required maxlength(30),
+	source String required maxlength(8),
+	code String required maxlength(32),
+	libelle String required maxlength(64),
+	active Boolean required,
+	module String maxlength(32),
+	position Integer required
+}
+
+entity CTypeContainer {
+	rowid Integer required,
+	code String required maxlength(32),
+	entity Integer required,
+	label String required maxlength(64),
+	module String maxlength(32),
+	active Boolean required
+}
+
+entity CTypeFees {
+	id Integer required,
+	code String required maxlength(12),
+	label String maxlength(30),
+	accountancyCode String maxlength(32),
+	active Boolean required,
+	module String maxlength(32),
+	position Integer required,
+	type Integer
+}
+
+entity CTypeResource {
+	rowid Integer required,
+	code String required maxlength(32),
+	label String required maxlength(64),
+	active Boolean required
+}
+
+entity CTypent {
+	id Integer required,
+	code String required maxlength(12),
+	libelle String maxlength(64),
+	fkCountry Integer,
+	active Boolean required,
+	module String maxlength(32),
+	position Integer required
+}
+
+entity CUnits {
+	rowid Integer required,
+	code String maxlength(3),
+	label String maxlength(50),
+	shortLabel String maxlength(5),
+	active Boolean required,
+	scale Integer,
+	unitType String maxlength(10)
+}
+
+entity CZiptown {
+	rowid Integer required,
+	code String maxlength(5),
+	zip String required maxlength(10),
+	town String required maxlength(255),
+	active Boolean required
+}
+
+entity Categorie {
+	rowid Integer required,
+	entity Integer required,
+	fkParent Integer required,
+	label String required maxlength(255),
+	type Boolean required,
+	description String maxlength(255),
+	color String maxlength(8),
+	fkSoc Integer,
+	visible Boolean required,
+	importKey String maxlength(14),
+	refExt String maxlength(255)
+}
+
+entity CategorieAccount {
+	importKey String maxlength(14)
+}
+
+entity CategorieContact {
+	importKey String maxlength(14)
+}
+
+entity CategorieFournisseur {
+	importKey String maxlength(14)
+}
+
+entity CategorieLang {
+	rowid Integer required,
+	lang String required maxlength(5),
+	label String required maxlength(255),
+	description String maxlength(255)
+}
+
+entity CategorieProduct {
+	importKey String maxlength(14)
+}
+
+entity CategorieProject {
+	importKey String maxlength(14)
+}
+
+entity CategorieSociete {
+	importKey String maxlength(14)
+}
+
+entity CategorieUser {
+	importKey String maxlength(14)
+}
+
+entity CategoriesExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Chargesociales {
+	rowid Integer required,
+	dateEch Instant required,
+	libelle String required maxlength(80),
+	entity Integer required,
+	tms Instant required,
+	dateCreation Instant,
+	dateValid Instant,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	fkUserValid Integer,
+	fkType Integer required,
+	fkAccount Integer,
+	fkModeReglement Integer,
+	amount Double,
+	paye Integer required,
+	periode LocalDate,
+	importKey String maxlength(14),
+	ref String maxlength(16),
+	fkProjet Integer
+}
+
+entity Commande {
+	rowid Integer required,
+	ref String required maxlength(30),
+	entity Integer required,
+	refExt String maxlength(255),
+	refInt String maxlength(255),
+	refClient String maxlength(255),
+	tms Instant required,
+	dateCreation Instant,
+	dateValid Instant,
+	dateCloture Instant,
+	dateCommande LocalDate,
+	fkUserModif Integer,
+	source Integer,
+	fkStatut Integer,
+	amountHt Double,
+	remisePercent Double,
+	remiseAbsolue Double,
+	remise Double,
+	tva Double,
+	localtax1 Double,
+	localtax2 Double,
+	totalHt Double,
+	totalTtc Double,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	facture Boolean,
+	fkAccount Integer,
+	fkCurrency String maxlength(3),
+	fkCondReglement Integer,
+	fkModeReglement Integer,
+	dateLivraison LocalDate,
+	fkShippingMethod Integer,
+	fkWarehouse Integer,
+	fkAvailability Integer,
+	fkInputReason Integer,
+	fkDeliveryAddress Integer,
+	fkIncoterms Integer,
+	locationIncoterms String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double,
+	lastMainDoc String maxlength(255),
+	moduleSource String maxlength(32),
+	posSource String maxlength(32)
+}
+
+entity CommandeExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity CommandeFournisseur {
+	rowid Integer required,
+	ref String required maxlength(255),
+	entity Integer required,
+	refExt String maxlength(64),
+	refSupplier String maxlength(255),
+	fkProjet Integer,
+	tms Instant required,
+	dateCreation Instant,
+	dateValid Instant,
+	dateApprove Instant,
+	dateApprove2 Instant,
+	dateCommande LocalDate,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	fkUserValid Integer,
+	fkUserApprove Integer,
+	fkUserApprove2 Integer,
+	source Integer required,
+	fkStatut Integer,
+	billed Integer,
+	amountHt Double,
+	remisePercent Double,
+	remise Double,
+	tva Double,
+	localtax1 Double,
+	localtax2 Double,
+	totalHt Double,
+	totalTtc Double,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	dateLivraison Instant,
+	fkAccount Integer,
+	fkCondReglement Integer,
+	fkModeReglement Integer,
+	fkInputMethod Integer,
+	fkIncoterms Integer,
+	locationIncoterms String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double,
+	lastMainDoc String maxlength(255)
+}
+
+entity CommandeFournisseurDispatch {
+	rowid Integer required,
+	fkCommande Integer,
+	fkProduct Integer,
+	fkCommandefourndet Integer,
+	qty Float,
+	fkEntrepot Integer,
+	fkUser Integer,
+	comment String maxlength(255),
+	batch String maxlength(30),
+	eatby LocalDate,
+	sellby LocalDate,
+	status Integer,
+	datec Instant,
+	tms Instant required,
+	fkProjet Integer,
+	fkReception Integer
+}
+
+entity CommandeFournisseurExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity CommandeFournisseurLog {
+	rowid Integer required,
+	tms Instant required,
+	datelog Instant required,
+	fkCommande Integer required,
+	fkStatut Integer required,
+	fkUser Integer required,
+	comment String maxlength(255)
+}
+
+entity CommandeFournisseurdet {
+	rowid Integer required,
+	fkCommande Integer required,
+	fkParentLine Integer,
+	fkProduct Integer,
+	ref String maxlength(50),
+	label String maxlength(255),
+	description String maxlength(255),
+	vatSrcCode String maxlength(10),
+	tvaTx Double,
+	localtax1Tx Double,
+	localtax1Type String maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String maxlength(10),
+	qty Double,
+	remisePercent Double,
+	remise Double,
+	subprice Double,
+	totalHt Double,
+	totalTva Double,
+	totalLocaltax1 Double,
+	totalLocaltax2 Double,
+	totalTtc Double,
+	productType Integer,
+	dateStart Instant,
+	dateEnd Instant,
+	infoBits Integer,
+	specialCode Integer,
+	rang Integer,
+	importKey String maxlength(14),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencySubprice Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double
+}
+
+entity CommandeFournisseurdetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Commandedet {
+	rowid Integer required,
+	fkParentLine Integer,
+	fkProduct Integer,
+	label String maxlength(255),
+	description String maxlength(255),
+	vatSrcCode String maxlength(10),
+	tvaTx Double,
+	localtax1Tx Double,
+	localtax1Type String maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String maxlength(10),
+	qty Double,
+	remisePercent Double,
+	remise Double,
+	fkRemiseExcept Integer,
+	price Double,
+	subprice Double,
+	totalHt Double,
+	totalTva Double,
+	totalLocaltax1 Double,
+	totalLocaltax2 Double,
+	totalTtc Double,
+	productType Integer,
+	dateStart Instant,
+	dateEnd Instant,
+	infoBits Integer,
+	buyPriceHt Double,
+	fkProductFournisseurPrice Integer,
+	specialCode Integer,
+	rang Integer,
+	importKey String maxlength(14),
+	fkCommandefourndet Integer,
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencySubprice Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double
+}
+
+entity CommandedetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Comment {
+	rowid Integer required,
+	datec Instant,
+	tms Instant required,
+	description String required maxlength(255),
+	fkUserAuthor Integer,
+	fkElement Integer,
+	elementType String maxlength(50),
+	entity Integer,
+	importKey String maxlength(125)
+}
+
+entity Const {
+	rowid Integer required,
+	name String required maxlength(255),
+	entity Integer required,
+	value String required maxlength(255),
+	type String maxlength(64),
+	visible Boolean required,
+	note String maxlength(255),
+	tms Instant required
+}
+
+entity Contrat {
+	rowid Integer required,
+	ref String maxlength(50),
+	refCustomer String maxlength(50),
+	refSupplier String maxlength(50),
+	refExt String maxlength(255),
+	entity Integer required,
+	tms Instant required,
+	datec Instant,
+	dateContrat Instant,
+	statut Integer,
+	miseEnService Instant,
+	finValidite Instant,
+	dateCloture Instant,
+	fkProjet Integer,
+	fkCommercialSignature Integer,
+	fkCommercialSuivi Integer,
+	fkUserModif Integer,
+	fkUserMiseEnService Integer,
+	fkUserCloture Integer,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	lastMainDoc String maxlength(255)
+}
+
+entity ContratExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Contratdet {
+	rowid Integer required,
+	tms Instant required,
+	statut Integer,
+	label String maxlength(255),
+	description String maxlength(255),
+	fkRemiseExcept Integer,
+	dateCommande Instant,
+	dateOuverturePrevue Instant,
+	dateOuverture Instant,
+	dateFinValidite Instant,
+	dateCloture Instant,
+	vatSrcCode String maxlength(10),
+	tvaTx Double,
+	localtax1Tx Double,
+	localtax1Type String maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String maxlength(10),
+	qty Double required,
+	remisePercent Double,
+	subprice Double,
+	priceHt Double,
+	remise Double,
+	totalHt Double,
+	totalTva Double,
+	totalLocaltax1 Double,
+	totalLocaltax2 Double,
+	totalTtc Double,
+	productType Integer,
+	infoBits Integer,
+	buyPriceHt Double,
+	fkProductFournisseurPrice Integer,
+	fkUserAuthor Integer required,
+	fkUserOuverture Integer,
+	fkUserCloture Integer,
+	commentaire String maxlength(255),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencySubprice Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double
+}
+
+entity ContratdetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity ContratdetLog {
+	rowid Integer required,
+	tms Instant required,
+	date Instant required,
+	statut Integer required,
+	fkUserAuthor Integer required,
+	commentaire String maxlength(255)
+}
+
+entity Cronjob {
+	rowid Integer required,
+	tms Instant required,
+	datec Instant,
+	jobtype String required maxlength(10),
+	label String required maxlength(255),
+	command String maxlength(255),
+	classesname String maxlength(255),
+	objectname String maxlength(255),
+	methodename String maxlength(255),
+	params String maxlength(255),
+	md5params String maxlength(32),
+	moduleName String maxlength(255),
+	priority Integer,
+	datelastrun Instant,
+	datenextrun Instant,
+	datestart Instant,
+	dateend Instant,
+	datelastresult Instant,
+	lastresult String maxlength(255),
+	lastoutput String maxlength(255),
+	unitfrequency String required maxlength(255),
+	frequency Integer required,
+	maxrun Integer required,
+	nbrun Integer,
+	autodelete Integer,
+	status Integer required,
+	test String maxlength(255),
+	fkUserAuthor Integer,
+	fkUserMod Integer,
+	fkMailing Integer,
+	note String maxlength(255),
+	libname String maxlength(255),
+	entity Integer,
+	processing Integer required
+}
+
+entity DefaultValues {
+	rowid Integer required,
+	entity Integer required,
+	type String maxlength(10),
+	userId Integer required,
+	page String maxlength(255),
+	param String maxlength(255),
+	value String maxlength(128)
+}
+
+entity Deplacement {
+	rowid Integer required,
+	ref String maxlength(30),
+	entity Integer required,
+	datec Instant required,
+	tms Instant required,
+	dated Instant,
+	fkUser Integer required,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	type String required maxlength(12),
+	fkStatut Integer required,
+	km Double,
+	fkSoc Integer,
+	fkProjet Integer,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	extraparams String maxlength(255)
+}
+
+entity DocumentModel {
+	rowid Integer required,
+	nom String maxlength(50),
+	entity Integer required,
+	type String required maxlength(20),
+	libelle String maxlength(255),
+	description String maxlength(255)
+}
+
+entity Don {
+	rowid Integer required,
+	ref String maxlength(30),
+	entity Integer required,
+	tms Instant required,
+	fkStatut Integer required,
+	datedon Instant,
+	amount Double,
+	fkPayment Integer,
+	paid Integer required,
+	firstname String maxlength(50),
+	lastname String maxlength(50),
+	societe String maxlength(50),
+	address String maxlength(255),
+	zip String maxlength(30),
+	town String maxlength(50),
+	country String maxlength(50),
+	fkCountry Integer required,
+	email String maxlength(255),
+	phone String maxlength(24),
+	phoneMobile String maxlength(24),
+	public Integer required,
+	fkProjet Integer,
+	datec Instant,
+	fkUserAuthor Integer required,
+	dateValid Instant,
+	fkUserValid Integer,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	fkSoc Integer
+}
+
+entity DonExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity EcmDirectories {
+	rowid Integer required,
+	label String required maxlength(64),
+	entity Integer required,
+	fkParent Integer,
+	description String required maxlength(255),
+	cachenbofdoc Integer required,
+	fullpath String maxlength(750),
+	extraparams String maxlength(255),
+	dateC Instant,
+	dateM Instant required,
+	acl String maxlength(255)
+}
+
+entity EcmFiles {
+	rowid Integer required,
+	ref String maxlength(128),
+	label String required maxlength(128),
+	share String maxlength(128),
+	entity Integer required,
+	filename String required maxlength(255),
+	filepath String maxlength(255),
+	fullpathOrig String maxlength(750),
+	description String maxlength(255),
+	keywords String maxlength(255),
+	cover String maxlength(255),
+	genOrUploaded String maxlength(12),
+	extraparams String maxlength(255),
+	dateC Instant,
+	dateM Instant required,
+	fkUserC Integer,
+	fkUserM Integer,
+	acl String maxlength(255),
+	position Integer,
+	keyword String maxlength(750),
+	srcObjectType String maxlength(32),
+	srcObjectId Integer
+}
+
+entity ElementContact {
+	rowid Integer required,
+	datecreate Instant,
+	statut Integer,
+	elementId Integer required,
+	fkSocpeople Integer required
+}
+
+entity ElementElement {
+	rowid Integer required,
+	fkSource Integer required,
+	sourcetype String required maxlength(32),
+	fkTarget Integer required,
+	targettype String required maxlength(32)
+}
+
+entity ElementResources {
+	rowid Integer required,
+	elementId Integer,
+	elementType String maxlength(64),
+	resourceId Integer,
+	resourceType String maxlength(64),
+	busy Integer,
+	mandatory Integer,
+	duree Double,
+	fkUserCreate Integer,
+	tms Instant required
+}
+
+entity ElementTag {
+	rowid Integer required,
+	entity Integer required,
+	lang String required maxlength(5),
+	tag String required maxlength(255),
+	fkElement Integer required,
+	element String required maxlength(64)
+}
+
+entity EmailcollectorEmailcollector {
+	rowid Integer required,
+	entity Integer required,
+	ref String required maxlength(128),
+	label String maxlength(255),
+	description String maxlength(255),
+	host String maxlength(255),
+	login String maxlength(128),
+	password String maxlength(128),
+	sourceDirectory String required maxlength(255),
+	targetDirectory String maxlength(255),
+	datelastresult Instant,
+	codelastresult String maxlength(16),
+	lastresult String maxlength(255),
+	notePublic String maxlength(255),
+	notePrivate String maxlength(255),
+	dateCreation Instant required,
+	tms Instant required,
+	fkUserCreat Integer required,
+	fkUserModif Integer,
+	importKey String maxlength(14),
+	status Integer required,
+	datelastok Instant,
+	maxemailpercollect Integer
+}
+
+entity EmailcollectorEmailcollectoraction {
+	rowid Integer required,
+	type String required maxlength(128),
+	actionparam String maxlength(255),
+	dateCreation Instant required,
+	tms Instant required,
+	fkUserCreat Integer required,
+	fkUserModif Integer,
+	position Integer,
+	importKey String maxlength(14),
+	status Integer required
+}
+
+entity EmailcollectorEmailcollectorfilter {
+	rowid Integer required,
+	type String required maxlength(128),
+	rulevalue String maxlength(255),
+	dateCreation Instant required,
+	tms Instant required,
+	fkUserCreat Integer required,
+	fkUserModif Integer,
+	importKey String maxlength(14),
+	status Integer required
+}
+
+entity Entrepot {
+	rowid Integer required,
+	datec Instant,
+	tms Instant required,
+	ref String maxlength(255),
+	entity Integer required,
+	description String maxlength(255),
+	lieu String maxlength(64),
+	address String maxlength(255),
+	zip String maxlength(10),
+	town String maxlength(50),
+	fkDepartement Integer,
+	fkPays Integer,
+	statut Boolean,
+	fkUserAuthor Integer,
+	modelPdf String maxlength(255),
+	importKey String maxlength(14),
+	fkParent Integer
+}
+
+entity Establishment {
+	rowid Integer required,
+	entity Integer required,
+	name String maxlength(50),
+	address String maxlength(255),
+	zip String maxlength(25),
+	town String maxlength(50),
+	fkState Integer,
+	fkCountry Integer,
+	profid1 String maxlength(20),
+	profid2 String maxlength(20),
+	profid3 String maxlength(20),
+	phone String maxlength(20),
+	fkUserAuthor Integer required,
+	fkUserMod Integer,
+	datec Instant required,
+	tms Instant required,
+	status Boolean
+}
+
+entity EventElement {
+	rowid Integer required,
+	fkSource Integer required,
+	fkTarget Integer required,
+	targettype String required maxlength(32)
+}
+
+entity Events {
+	rowid Integer required,
+	tms Instant required,
+	type String required maxlength(32),
+	entity Integer required,
+	dateevent Instant,
+	fkUser Integer,
+	description String required maxlength(250),
+	ip String maxlength(250),
+	userAgent String maxlength(255),
+	fkObject Integer
+}
+
+entity Expedition {
+	rowid Integer required,
+	tms Instant required,
+	ref String required maxlength(30),
+	entity Integer required,
+	fkProjet Integer,
+	refExt String maxlength(255),
+	refInt String maxlength(30),
+	refCustomer String maxlength(30),
+	dateCreation Instant,
+	fkUserModif Integer,
+	dateValid Instant,
+	dateDelivery Instant,
+	dateExpedition Instant,
+	fkAddress Integer,
+	trackingNumber String maxlength(50),
+	fkStatut Integer,
+	billed Integer,
+	height Float,
+	width Float,
+	sizeUnits Integer,
+	size Float,
+	weightUnits Integer,
+	weight Float,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	fkIncoterms Integer,
+	locationIncoterms String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	lastMainDoc String maxlength(255)
+}
+
+entity ExpeditionExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Expeditiondet {
+	rowid Integer required,
+	fkOriginLine Integer,
+	fkEntrepot Integer,
+	qty Double,
+	rang Integer
+}
+
+entity ExpeditiondetBatch {
+	rowid Integer required,
+	eatby LocalDate,
+	sellby LocalDate,
+	batch String maxlength(30),
+	qty Double required,
+	fkOriginStock Integer required
+}
+
+entity ExpeditiondetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Expensereport {
+	rowid Integer required,
+	ref String required maxlength(50),
+	entity Integer required,
+	refNumberInt Integer,
+	refExt Integer,
+	totalHt Double,
+	totalTva Double,
+	localtax1 Double,
+	localtax2 Double,
+	totalTtc Double,
+	dateDebut LocalDate required,
+	dateFin LocalDate required,
+	dateCreate Instant required,
+	dateValid Instant,
+	dateApprove Instant,
+	dateRefuse Instant,
+	dateCancel Instant,
+	tms Instant required,
+	fkUserAuthor Integer required,
+	fkUserModif Integer,
+	fkUserValid Integer,
+	fkUserValidator Integer,
+	fkUserApprove Integer,
+	fkUserRefuse Integer,
+	fkUserCancel Integer,
+	fkStatut Integer required,
+	fkCPaiement Integer,
+	paid Integer required,
+	notePublic String maxlength(255),
+	notePrivate String maxlength(255),
+	detailRefuse String maxlength(255),
+	detailCancel String maxlength(255),
+	integrationCompta Integer,
+	fkBankAccount Integer,
+	modelPdf String maxlength(50),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double,
+	importKey String maxlength(14),
+	extraparams String maxlength(255)
+}
+
+entity ExpensereportDet {
+	rowid Integer required,
+	fkExpensereport Integer required,
+	docnumber String maxlength(128),
+	fkCTypeFees Integer required,
+	fkProjet Integer,
+	comments String required maxlength(255),
+	productType Integer,
+	qty Double required,
+	subprice Double required,
+	valueUnit Double required,
+	remisePercent Double,
+	tvaTx Double,
+	localtax1Tx Double,
+	localtax1Type String maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String maxlength(10),
+	totalHt Double required,
+	totalTva Double required,
+	totalLocaltax1 Double,
+	totalLocaltax2 Double,
+	totalTtc Double required,
+	date LocalDate required,
+	infoBits Integer,
+	specialCode Integer,
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencySubprice Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double,
+	fkFacture Integer,
+	fkCodeVentilation Integer,
+	rang Integer,
+	importKey String maxlength(14),
+	vatSrcCode String maxlength(10),
+	ruleWarningMessage String maxlength(255),
+	fkCExpTaxCat Integer,
+	fkEcmFiles Integer
+}
+
+entity ExpensereportExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity ExpensereportIk {
+	rowid Integer required,
+	datec Instant,
+	tms Instant required,
+	fkCExpTaxCat Integer required,
+	fkRange Integer required,
+	coef Double required,
+	ikoffset Double required,
+	active Integer
+}
+
+entity ExpensereportRules {
+	rowid Integer required,
+	datec Instant,
+	tms Instant required,
+	dates Instant required,
+	datee Instant required,
+	amount Double,
+	restrictive Boolean required,
+	fkUser Integer,
+	fkUsergroup Integer,
+	fkCTypeFees Integer required,
+	codeExpenseRulesType String required maxlength(50),
+	isForAll Boolean,
+	entity Integer
+}
+
+entity ExportCompta {
+	rowid Integer required,
+	ref String required maxlength(12),
+	dateExport Instant required,
+	fkUser Integer required,
+	note String maxlength(255)
+}
+
+entity ExportModel {
+	rowid Integer required,
+	fkUser Integer required,
+	label String required maxlength(50),
+	type String required maxlength(20),
+	field String required maxlength(255),
+	filter String maxlength(255)
+}
+
+entity Extrafields {
+	rowid Integer required,
+	name String required maxlength(64),
+	entity Integer required,
+	elementtype String required maxlength(64),
+	tms Instant required,
+	label String required maxlength(255),
+	type String maxlength(8),
+	size String maxlength(8),
+	fieldunique Integer,
+	fieldrequired Integer,
+	perms String maxlength(255),
+	pos Integer,
+	alwayseditable Integer,
+	param String maxlength(255),
+	list String maxlength(128),
+	totalizable Boolean,
+	ishidden Integer,
+	fieldcomputed String maxlength(255),
+	fielddefault String maxlength(255),
+	langs String maxlength(64),
+	enabled String maxlength(255),
+	help String maxlength(255),
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	datec Instant
+}
+
+entity Facture {
+	rowid Integer required,
+	ref String required maxlength(30),
+	entity Integer required,
+	refExt String maxlength(255),
+	refInt String maxlength(255),
+	refClient String maxlength(255),
+	type Integer required,
+	increment String maxlength(10),
+	datec Instant,
+	datef LocalDate,
+	datePointoftax LocalDate,
+	dateValid LocalDate,
+	tms Instant required,
+	paye Integer required,
+	amount Double required,
+	remisePercent Double,
+	remiseAbsolue Double,
+	remise Double,
+	closeCode String maxlength(16),
+	closeNote String maxlength(128),
+	tva Double,
+	localtax1 Double,
+	localtax2 Double,
+	revenuestamp Double,
+	total Double,
+	totalTtc Double,
+	fkStatut Integer required,
+	fkUserModif Integer,
+	fkAccount Integer,
+	fkCurrency String maxlength(3),
+	fkCondReglement Integer required,
+	fkModeReglement Integer,
+	dateLimReglement LocalDate,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	fkIncoterms Integer,
+	locationIncoterms String maxlength(255),
+	situationCycleRef Integer,
+	situationCounter Integer,
+	situationFinal Integer,
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double,
+	fkFacRecSource Integer,
+	lastMainDoc String maxlength(255),
+	moduleSource String maxlength(32),
+	posSource String maxlength(32)
+}
+
+entity FactureExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14),
+	pp1 Integer
+}
+
+entity FactureFourn {
+	rowid Integer required,
+	ref String required maxlength(255),
+	refSupplier String required maxlength(255),
+	entity Integer required,
+	refExt String maxlength(255),
+	type Integer required,
+	datec Instant,
+	datef LocalDate,
+	tms Instant required,
+	libelle String maxlength(255),
+	paye Integer required,
+	amount Double required,
+	remise Double,
+	closeCode String maxlength(16),
+	closeNote String maxlength(128),
+	tva Double,
+	localtax1 Double,
+	localtax2 Double,
+	total Double,
+	totalHt Double,
+	totalTva Double,
+	totalTtc Double,
+	fkStatut Integer required,
+	fkUserModif Integer,
+	fkFactureSource Integer,
+	fkAccount Integer,
+	fkCondReglement Integer,
+	fkModeReglement Integer,
+	dateLimReglement LocalDate,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	fkIncoterms Integer,
+	locationIncoterms String maxlength(255),
+	modelPdf String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double,
+	lastMainDoc String maxlength(255),
+	datePointoftax LocalDate,
+	dateValid LocalDate
+}
+
+entity FactureFournDet {
+	rowid Integer required,
+	fkParentLine Integer,
+	fkProduct Integer,
+	ref String maxlength(50),
+	label String maxlength(255),
+	description String maxlength(255),
+	puHt Double,
+	puTtc Double,
+	qty Double,
+	remisePercent Double,
+	vatSrcCode String maxlength(10),
+	tvaTx Double,
+	localtax1Tx Double,
+	localtax1Type String maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String maxlength(10),
+	totalHt Double,
+	tva Double,
+	totalLocaltax1 Double,
+	totalLocaltax2 Double,
+	totalTtc Double,
+	productType Integer,
+	dateStart Instant,
+	dateEnd Instant,
+	infoBits Integer,
+	fkCodeVentilation Integer required,
+	specialCode Integer,
+	rang Integer,
+	importKey String maxlength(14),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencySubprice Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double
+}
+
+entity FactureFournDetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity FactureFournExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity FactureRec {
+	rowid Integer required,
+	titre String maxlength(100),
+	entity Integer required,
+	datec Instant,
+	amount Double required,
+	remise Double,
+	remisePercent Double,
+	remiseAbsolue Double,
+	tva Double,
+	localtax1 Double,
+	localtax2 Double,
+	revenuestamp Double,
+	total Double,
+	totalTtc Double,
+	fkUserModif Integer,
+	fkCondReglement Integer,
+	fkModeReglement Integer,
+	dateLimReglement LocalDate,
+	fkAccount Integer,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelpdf String maxlength(255),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double,
+	usenewprice Integer,
+	frequency Integer,
+	unitFrequency String maxlength(2),
+	dateWhen Instant,
+	dateLastGen Instant,
+	nbGenDone Integer,
+	nbGenMax Integer,
+	autoValidate Integer,
+	generatePdf Integer,
+	tms Instant required,
+	vatSrcCode String maxlength(10),
+	suspended Integer
+}
+
+entity FactureRecExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Facturedet {
+	rowid Integer required,
+	fkParentLine Integer,
+	fkProduct Integer,
+	label String maxlength(255),
+	description String maxlength(255),
+	vatSrcCode String maxlength(10),
+	tvaTx Double,
+	localtax1Tx Double,
+	localtax1Type String maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String maxlength(10),
+	qty Double,
+	remisePercent Double,
+	remise Double,
+	fkRemiseExcept Integer,
+	subprice Double,
+	price Double,
+	totalHt Double,
+	totalTva Double,
+	totalLocaltax1 Double,
+	totalLocaltax2 Double,
+	totalTtc Double,
+	productType Integer,
+	dateStart Instant,
+	dateEnd Instant,
+	infoBits Integer,
+	buyPriceHt Double,
+	fkProductFournisseurPrice Integer,
+	fkCodeVentilation Integer required,
+	specialCode Integer,
+	rang Integer,
+	fkContractLine Integer,
+	importKey String maxlength(14),
+	situationPercent Double,
+	fkPrevId Integer,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencySubprice Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double
+}
+
+entity FacturedetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity FacturedetRec {
+	rowid Integer required,
+	fkFacture Integer required,
+	fkParentLine Integer,
+	fkProduct Integer,
+	productType Integer,
+	label String maxlength(255),
+	description String maxlength(255),
+	vatSrcCode String maxlength(10),
+	tvaTx Double,
+	localtax1Tx Double,
+	localtax1Type String maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String maxlength(10),
+	qty Double,
+	remisePercent Double,
+	remise Double,
+	subprice Double,
+	price Double,
+	totalHt Double,
+	totalTva Double,
+	totalLocaltax1 Double,
+	totalLocaltax2 Double,
+	totalTtc Double,
+	infoBits Integer,
+	specialCode Integer,
+	rang Integer,
+	fkContractLine Integer,
+	importKey String maxlength(14),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencySubprice Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double,
+	dateStartFill Integer,
+	dateEndFill Integer,
+	buyPriceHt Double,
+	fkProductFournisseurPrice Integer,
+	fkUserAuthor Integer,
+	fkUserModif Integer
+}
+
+entity FacturedetRecExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Fichinter {
+	rowid Integer required,
+	fkProjet Integer,
+	fkContrat Integer,
+	ref String required maxlength(30),
+	refExt String maxlength(255),
+	entity Integer required,
+	tms Instant required,
+	datec Instant,
+	dateValid Instant,
+	datei LocalDate,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	fkUserValid Integer,
+	fkStatut Integer,
+	dateo LocalDate,
+	datee LocalDate,
+	datet LocalDate,
+	duree Double,
+	description String maxlength(255),
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	extraparams String maxlength(255),
+	lastMainDoc String maxlength(255),
+	importKey String maxlength(14)
+}
+
+entity FichinterExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Fichinterdet {
+	rowid Integer required,
+	fkParentLine Integer,
+	date Instant,
+	description String maxlength(255),
+	duree Integer,
+	rang Integer
+}
+
+entity FichinterdetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Holiday {
+	rowid Integer required,
+	entity Integer required,
+	fkUser Integer required,
+	fkUserCreate Integer,
+	fkType Integer required,
+	dateCreate Instant required,
+	description String required maxlength(255),
+	dateDebut LocalDate required,
+	dateFin LocalDate required,
+	halfday Integer,
+	statut Integer required,
+	fkValidator Integer required,
+	dateValid Instant,
+	fkUserValid Integer,
+	dateRefuse Instant,
+	fkUserRefuse Integer,
+	dateCancel Instant,
+	fkUserCancel Integer,
+	detailRefuse String maxlength(250),
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	tms Instant required,
+	ref String maxlength(30),
+	refExt String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	fkUserModif Integer
+}
+
+entity HolidayConfig {
+	rowid Integer required,
+	name String required maxlength(128),
+	value String maxlength(255)
+}
+
+entity HolidayLogs {
+	rowid Integer required,
+	dateAction Instant required,
+	fkUserAction Integer required,
+	fkUserUpdate Integer required,
+	fkType Integer required,
+	typeAction String required maxlength(255),
+	prevSolde String required maxlength(255),
+	newSolde String required maxlength(255)
+}
+
+entity HolidayUsers {
+	fkUser Integer required,
+	fkType Integer required,
+	nbHoliday Double required
+}
+
+entity ImportModel {
+	rowid Integer required,
+	fkUser Integer required,
+	label String required maxlength(50),
+	type String required maxlength(50),
+	field String required maxlength(255)
+}
+
+entity Inventory {
+	rowid Integer required,
+	entity Integer,
+	ref String maxlength(48),
+	dateCreation Instant,
+	tms Instant required,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	fkUserValid Integer,
+	fkWarehouse Integer,
+	status Integer,
+	title String required maxlength(255),
+	dateInventory Instant,
+	importKey String maxlength(14),
+	dateValidation Instant,
+	fkProduct Integer
+}
+
+entity Inventorydet {
+	rowid Integer required,
+	datec Instant,
+	tms Instant required,
+	fkInventory Integer,
+	fkWarehouse Integer,
+	fkProduct Integer,
+	batch String maxlength(30),
+	qtyView Double,
+	qtyStock Double,
+	qtyRegulated Double
+}
+
+entity Links {
+	rowid Integer required,
+	entity Integer required,
+	datea Instant required,
+	url String required maxlength(255),
+	label String required maxlength(255),
+	objecttype String required maxlength(255),
+	objectid Integer required
+}
+
+entity Livraison {
+	rowid Integer required,
+	tms Instant required,
+	ref String required maxlength(30),
+	entity Integer required,
+	refExt String maxlength(255),
+	refInt String maxlength(30),
+	refCustomer String maxlength(30),
+	dateCreation Instant,
+	dateValid Instant,
+	dateDelivery Instant,
+	fkAddress Integer,
+	fkStatut Integer,
+	totalHt Double,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	fkIncoterms Integer,
+	locationIncoterms String maxlength(255),
+	lastMainDoc String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255)
+}
+
+entity LivraisonExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Livraisondet {
+	rowid Integer required,
+	fkOriginLine Integer,
+	fkProduct Integer,
+	description String maxlength(255),
+	qty Double,
+	subprice Double,
+	totalHt Double,
+	rang Integer
+}
+
+entity LivraisondetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Loan {
+	rowid Integer required,
+	entity Integer required,
+	datec Instant,
+	tms Instant required,
+	label String required maxlength(80),
+	fkBank Integer,
+	capital Double,
+	datestart LocalDate,
+	dateend LocalDate,
+	nbterm Double,
+	rate Double required,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	capitalPosition Double,
+	datePosition LocalDate,
+	paid Integer required,
+	accountancyAccountCapital String maxlength(32),
+	accountancyAccountInsurance String maxlength(32),
+	accountancyAccountInterest String maxlength(32),
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	active Boolean required,
+	fkProjet Integer,
+	insuranceAmount Double
+}
+
+entity LoanSchedule {
+	rowid Integer required,
+	fkLoan Integer,
+	datec Instant,
+	tms Instant required,
+	datep Instant,
+	amountCapital Double,
+	amountInsurance Double,
+	amountInterest Double,
+	fkTypepayment Integer required,
+	numPayment String maxlength(50),
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	fkBank Integer required,
+	fkUserCreat Integer,
+	fkUserModif Integer
+}
+
+entity Localtax {
+	rowid Integer required,
+	entity Integer required,
+	localtaxtype Boolean,
+	tms Instant required,
+	datep LocalDate,
+	datev LocalDate,
+	amount Double,
+	label String maxlength(255),
+	note String maxlength(255),
+	fkBank Integer,
+	fkUserCreat Integer,
+	fkUserModif Integer
+}
+
+entity Mailing {
+	rowid Integer required,
+	statut Integer,
+	titre String maxlength(128),
+	entity Integer required,
+	sujet String maxlength(128),
+	body TextBlob,
+	bgcolor String maxlength(8),
+	bgimage String maxlength(255),
+	cible String maxlength(60),
+	nbemail Integer,
+	emailFrom String maxlength(160),
+	emailReplyto String maxlength(160),
+	emailErrorsto String maxlength(160),
+	tag String maxlength(128),
+	dateCreat Instant,
+	dateValid Instant,
+	dateAppro Instant,
+	dateEnvoi Instant,
+	fkUserCreat Integer,
+	fkUserValid Integer,
+	fkUserAppro Integer,
+	extraparams String maxlength(255),
+	joinedFile1 String maxlength(255),
+	joinedFile2 String maxlength(255),
+	joinedFile3 String maxlength(255),
+	joinedFile4 String maxlength(255)
+}
+
+entity MailingCibles {
+	rowid Integer required,
+	fkMailing Integer required,
+	fkContact Integer required,
+	lastname String maxlength(160),
+	firstname String maxlength(160),
+	email String required maxlength(160),
+	other String maxlength(255),
+	tag String maxlength(128),
+	statut Integer required,
+	sourceUrl String maxlength(255),
+	sourceId Integer,
+	sourceType String maxlength(16),
+	dateEnvoi Instant,
+	errorText String maxlength(255)
+}
+
+entity MailingUnsubscribe {
+	rowid Integer required,
+	entity Integer required,
+	email String maxlength(255),
+	unsubscribegroup String maxlength(128),
+	ip String maxlength(128),
+	dateCreat Instant,
+	tms Instant required
+}
+
+entity Materiels {
+	rowid Integer required,
+	ref String required maxlength(50),
+	socid Integer,
+	marque String maxlength(50),
+	model String maxlength(50),
+	noserie String maxlength(50),
+	options String maxlength(255),
+	notePublic String maxlength(255),
+	dateAchat LocalDate,
+	garantie Integer
+}
+
+entity Menu {
+	rowid Integer required,
+	menuHandler String required maxlength(16),
+	entity Integer required,
+	module String maxlength(64),
+	type String required maxlength(4),
+	mainmenu String required maxlength(100),
+	leftmenu String maxlength(100),
+	fkMenu Integer required,
+	fkMainmenu String maxlength(100),
+	fkLeftmenu String maxlength(100),
+	position Integer required,
+	url String required maxlength(255),
+	target String maxlength(100),
+	titre String required maxlength(255),
+	langs String maxlength(100),
+	level Integer,
+	perms String maxlength(255),
+	enabled String maxlength(255),
+	usertype Integer required,
+	tms Instant required
+}
+
+entity Multicurrency {
+	rowid Integer required,
+	dateCreate Instant,
+	code String maxlength(255),
+	name String maxlength(255),
+	entity Integer,
+	fkUser Integer
+}
+
+entity MulticurrencyRate {
+	rowid Integer required,
+	dateSync Instant,
+	rate Double required,
+	fkMulticurrency Integer required,
+	entity Integer
+}
+
+entity Notify {
+	rowid Integer required,
+	tms Instant required,
+	daten Instant,
+	fkAction Integer required,
+	fkSoc Integer,
+	fkContact Integer,
+	fkUser Integer,
+	type String maxlength(16),
+	typeTarget String maxlength(16),
+	objetType String required maxlength(24),
+	objetId Integer required,
+	email String maxlength(255)
+}
+
+entity NotifyDef {
+	rowid Integer required,
+	tms Instant required,
+	datec LocalDate,
+	fkAction Integer required,
+	fkSoc Integer,
+	fkContact Integer,
+	fkUser Integer,
+	type String maxlength(16)
+}
+
+entity NotifyDefObject {
+	id Integer required,
+	entity Integer required,
+	objetType String maxlength(16),
+	objetId Integer required,
+	typeNotif String maxlength(16),
+	dateNotif Instant,
+	userId Integer,
+	moreparam String maxlength(255)
+}
+
+entity OauthState {
+	rowid Integer required,
+	service String maxlength(36),
+	state String maxlength(128),
+	fkUser Integer,
+	fkAdherent Integer,
+	entity Integer
+}
+
+entity OauthToken {
+	rowid Integer required,
+	service String maxlength(36),
+	token String maxlength(255),
+	fkUser Integer,
+	fkAdherent Integer,
+	entity Integer,
+	tokenstring String maxlength(255)
+}
+
+entity Onlinesignature {
+	rowid Integer required,
+	entity Integer required,
+	objectType String required maxlength(32),
+	objectId Integer required,
+	datec Instant required,
+	tms Instant required,
+	name String required maxlength(255),
+	ip String maxlength(128),
+	pathoffile String maxlength(255)
+}
+
+entity OpensurveyComments {
+	idComment Integer required,
+	idSondage String required maxlength(16),
+	comment String required maxlength(255),
+	tms Instant required,
+	usercomment String maxlength(255)
+}
+
+entity OpensurveyFormquestions {
+	rowid Integer required,
+	idSondage String maxlength(16),
+	question String maxlength(255),
+	availableAnswers String maxlength(255)
+}
+
+entity OpensurveySondage {
+	idSondage String required maxlength(16),
+	entity Integer required,
+	commentaires String maxlength(255),
+	mailAdmin String maxlength(128),
+	nomAdmin String maxlength(64),
+	fkUserCreat Integer required,
+	titre String required maxlength(255),
+	dateFin Instant,
+	status Integer,
+	format String required maxlength(2),
+	mailsonde Boolean required,
+	allowComments Boolean required,
+	allowSpy Boolean required,
+	tms Instant required,
+	sujet String maxlength(255)
+}
+
+entity OpensurveyUserFormanswers {
+	fkUserSurvey Integer required,
+	fkQuestion Integer required,
+	reponses String maxlength(255)
+}
+
+entity OpensurveyUserStuds {
+	idUsers Integer required,
+	nom String required maxlength(64),
+	idSondage String required maxlength(16),
+	reponses String required maxlength(100),
+	tms Instant required
+}
+
+entity OverwriteTrans {
+	rowid Integer required,
+	entity Integer required,
+	lang String maxlength(5),
+	transkey String maxlength(128),
+	transvalue String maxlength(255)
+}
+
+entity Paiement {
+	rowid Integer required,
+	ref String required maxlength(30),
+	entity Integer required,
+	datec Instant,
+	tms Instant required,
+	datep Instant,
+	amount Double,
+	multicurrencyAmount Double,
+	fkPaiement Integer required,
+	numPaiement String maxlength(50),
+	note String maxlength(255),
+	fkBank Integer required,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	statut Integer required,
+	fkExportCompta Integer required,
+	extPaymentId String maxlength(128),
+	extPaymentSite String maxlength(128)
+}
+
+entity PaiementFacture {
+	rowid Integer required,
+	amount Double,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyAmount Double
+}
+
+entity Paiementcharge {
+	rowid Integer required,
+	fkCharge Integer,
+	datec Instant,
+	tms Instant required,
+	datep Instant,
+	amount Double,
+	fkTypepaiement Integer required,
+	numPaiement String maxlength(50),
+	note String maxlength(255),
+	fkBank Integer required,
+	fkUserCreat Integer,
+	fkUserModif Integer
+}
+
+entity Paiementfourn {
+	rowid Integer required,
+	ref String maxlength(30),
+	entity Integer,
+	tms Instant required,
+	datec Instant,
+	datep Instant,
+	amount Double,
+	multicurrencyAmount Double,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	fkPaiement Integer required,
+	numPaiement String maxlength(50),
+	note String maxlength(255),
+	fkBank Integer required,
+	statut Integer required,
+	modelPdf String maxlength(255)
+}
+
+entity PaiementfournFacturefourn {
+	rowid Integer required,
+	fkPaiementfourn Integer,
+	fkFacturefourn Integer,
+	amount Double,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyAmount Double
+}
+
+entity PaymentDonation {
+	rowid Integer required,
+	fkDonation Integer,
+	datec Instant,
+	tms Instant required,
+	datep Instant,
+	amount Double,
+	fkTypepayment Integer required,
+	numPayment String maxlength(50),
+	note String maxlength(255),
+	fkBank Integer required,
+	fkUserCreat Integer,
+	fkUserModif Integer
+}
+
+entity PaymentExpensereport {
+	rowid Integer required,
+	fkExpensereport Integer,
+	datec Instant,
+	tms Instant required,
+	datep Instant,
+	amount Double,
+	fkTypepayment Integer required,
+	numPayment String maxlength(50),
+	note String maxlength(255),
+	fkBank Integer required,
+	fkUserCreat Integer,
+	fkUserModif Integer
+}
+
+entity PaymentLoan {
+	rowid Integer required,
+	fkLoan Integer,
+	datec Instant,
+	tms Instant required,
+	datep Instant,
+	amountCapital Double,
+	amountInsurance Double,
+	amountInterest Double,
+	fkTypepayment Integer required,
+	numPayment String maxlength(50),
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	fkBank Integer required,
+	fkUserCreat Integer,
+	fkUserModif Integer
+}
+
+entity PaymentSalary {
+	rowid Integer required,
+	ref String maxlength(30),
+	tms Instant required,
+	datec Instant,
+	datep LocalDate,
+	datev LocalDate,
+	salary Double,
+	amount Double,
+	fkProjet Integer,
+	fkTypepayment Integer required,
+	numPayment String maxlength(50),
+	label String maxlength(255),
+	datesp LocalDate,
+	dateep LocalDate,
+	entity Integer required,
+	note String maxlength(255),
+	fkBank Integer,
+	fkUserAuthor Integer,
+	fkUserModif Integer
+}
+
+entity PaymentVarious {
+	rowid Integer required,
+	ref String maxlength(30),
+	tms Instant required,
+	datec Instant,
+	datep LocalDate,
+	datev LocalDate,
+	sens Integer required,
+	amount Double required,
+	fkTypepayment Integer required,
+	numPayment String maxlength(50),
+	label String maxlength(255),
+	accountancyCode String maxlength(32),
+	fkProjet Integer,
+	entity Integer required,
+	note String maxlength(255),
+	fkBank Integer,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	subledgerAccount String maxlength(32)
+}
+
+entity PosCash {
+	rowid Integer required,
+	entity Integer required,
+	code String maxlength(3),
+	name String maxlength(30),
+	tactil Boolean required,
+	barcode Boolean required,
+	fkPaycash Integer,
+	fkModepaycash Integer,
+	fkPaybank Integer,
+	fkModepaybank Integer,
+	fkModepaybankExtra Integer,
+	fkPaybankExtra Integer,
+	fkWarehouse Integer,
+	fkDevice Integer,
+	printerName String maxlength(30),
+	fkSoc Integer,
+	isUsed Boolean,
+	fkUserU Integer,
+	fkUserC Integer,
+	fkUserM Integer,
+	datec Instant,
+	datea Instant,
+	isClosed Boolean
+}
+
+entity PosCashFence {
+	rowid Integer required,
+	entity Integer required,
+	ref String maxlength(64),
+	label String maxlength(255),
+	opening Double,
+	cash Double,
+	card Double,
+	cheque Double,
+	status Integer,
+	dateCreation Instant required,
+	dateValid Instant,
+	dayClose Integer,
+	monthClose Integer,
+	yearClose Integer,
+	posmodule String maxlength(30),
+	posnumber String maxlength(30),
+	fkUserCreat Integer,
+	fkUserValid Integer,
+	tms Instant required,
+	importKey String maxlength(14)
+}
+
+entity PosControlCash {
+	rowid Integer required,
+	ref String required maxlength(30),
+	entity Integer required,
+	fkCash Integer,
+	fkUser Integer,
+	dateC Instant,
+	typeControl Boolean,
+	amountTeor Double,
+	amountReal Double,
+	amountDiff Double,
+	amountMovOut Double,
+	amountMovInt Double,
+	amountNextDay Double,
+	comment String maxlength(255)
+}
+
+entity PosFacture {
+	rowid Integer required,
+	fkFacture Integer required,
+	customerPay Double
+}
+
+entity PosMoviments {
+	rowid Integer required,
+	entity Integer required,
+	fkCash Integer,
+	fkUser Integer,
+	dateM Instant,
+	amount Double,
+	type Boolean,
+	comment String maxlength(255)
+}
+
+entity PosPaiementTicket {
+	rowid Integer required,
+	fkPaiement Integer,
+	fkTicket Integer,
+	amount Double
+}
+
+entity PosPlaces {
+	rowid Integer required,
+	entity Integer required,
+	name String required maxlength(30),
+	description String maxlength(255),
+	fkTicket Integer,
+	status Integer required,
+	fkUserC Integer,
+	fkUserM Integer,
+	datec Instant,
+	datea Instant
+}
+
+entity PosTicket {
+	rowid Integer required,
+	ticketnumber String required maxlength(30),
+	type Integer,
+	entity Integer required,
+	fkCash Integer required,
+	dateCreation Instant,
+	dateTicket LocalDate,
+	dateClosed Instant,
+	tms Instant required,
+	paye Integer required,
+	remisePercent Double,
+	remiseAbsolute Double,
+	remise Double,
+	customerPay Double,
+	difpayment Double,
+	tva Double,
+	localtax1 Double,
+	localtax2 Double,
+	totalHt Double,
+	totalTtc Double,
+	fkStatut Integer required,
+	fkUserClose Integer,
+	fkFacture Integer,
+	fkTicketSource Integer,
+	fkModeReglement Integer,
+	fkControl Integer,
+	note String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	importKey String maxlength(14)
+}
+
+entity PosTicketdet {
+	rowid Integer required,
+	fkTicket Integer required,
+	fkParentLine Integer,
+	fkProduct Integer,
+	description String maxlength(255),
+	tvaTx Double,
+	localtax1Tx Double,
+	localtax1Type Integer,
+	localtax2Tx Double,
+	localtax2Type Integer,
+	qty Double,
+	remisePercent Double,
+	remise Double,
+	fkRemiseExcept Integer,
+	subprice Double,
+	price Double,
+	totalHt Double,
+	totalTva Double,
+	totalLocaltax1 Double,
+	totalLocaltax2 Double,
+	totalTtc Double,
+	productType Integer,
+	dateStart Instant,
+	dateEnd Instant,
+	infoBits Integer,
+	fkCodeVentilation Integer required,
+	fkExportCompta Integer required,
+	rang Integer,
+	importKey String maxlength(14),
+	note String maxlength(255)
+}
+
+entity PosUsers {
+	rowid Integer required,
+	fkTerminal Integer,
+	fkObject Integer,
+	objtype String required maxlength(30)
+}
+
+entity PrelevementBons {
+	rowid Integer required,
+	ref String maxlength(12),
+	entity Integer required,
+	datec Instant,
+	amount Double,
+	statut Integer,
+	credite Integer,
+	note String maxlength(255),
+	dateTrans Instant,
+	methodTrans Integer,
+	fkUserTrans Integer,
+	dateCredit Instant,
+	fkUserCredit Integer
+}
+
+entity PrelevementFacture {
+	rowid Integer required,
+	fkFacture Integer required
+}
+
+entity PrelevementFactureDemande {
+	rowid Integer required,
+	fkFacture Integer required,
+	amount Double,
+	dateDemande Instant required,
+	traite Integer,
+	dateTraite Instant,
+	fkPrelevementBons Integer,
+	fkUserDemande Integer required,
+	codeBanque String maxlength(128),
+	codeGuichet String maxlength(6),
+	number String maxlength(255),
+	cleRib String maxlength(5),
+	entity Integer,
+	sourcetype String maxlength(32),
+	extPaymentId String maxlength(128),
+	extPaymentSite String maxlength(128)
+}
+
+entity PrelevementLignes {
+	rowid Integer required,
+	fkSoc Integer required,
+	statut Integer,
+	clientNom String maxlength(255),
+	amount Double,
+	codeBanque String maxlength(128),
+	codeGuichet String maxlength(6),
+	number String maxlength(255),
+	cleRib String maxlength(5),
+	note String maxlength(255)
+}
+
+entity PrelevementRejet {
+	rowid Integer required,
+	fkPrelevementLignes Integer,
+	dateRejet Instant,
+	motif Integer,
+	dateCreation Instant,
+	fkUserCreation Integer,
+	note String maxlength(255),
+	afacturer Boolean,
+	fkFacture Integer
+}
+
+entity Printing {
+	rowid Integer required,
+	tms Instant required,
+	datec Instant,
+	printerName String required maxlength(255),
+	printerLocation String required maxlength(255),
+	printerId String required maxlength(255),
+	copy Integer required,
+	module String required maxlength(16),
+	driver String required maxlength(16),
+	userid Integer
+}
+
+entity Product {
+	rowid Integer required,
+	ref String required maxlength(128),
+	entity Integer required,
+	refExt String maxlength(128),
+	datec Instant,
+	tms Instant required,
+	fkParent Integer,
+	label String required maxlength(255),
+	description String maxlength(255),
+	notePublic String maxlength(255),
+	note String maxlength(255),
+	customcode String maxlength(32),
+	price Double,
+	priceTtc Double,
+	priceMin Double,
+	priceMinTtc Double,
+	priceBaseType String maxlength(3),
+	costPrice Double,
+	defaultVatCode String maxlength(10),
+	tvaTx Double,
+	recuperableonly Integer required,
+	localtax1Tx Double,
+	localtax1Type String required maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String required maxlength(10),
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	tosell Boolean,
+	tobuy Boolean,
+	onportal Boolean,
+	tobatch Boolean required,
+	fkProductType Integer,
+	duration String maxlength(6),
+	seuilStockAlerte Integer,
+	url String maxlength(255),
+	barcode String maxlength(255),
+	accountancyCodeSell String maxlength(32),
+	accountancyCodeSellIntra String maxlength(32),
+	accountancyCodeSellExport String maxlength(32),
+	accountancyCodeBuy String maxlength(32),
+	partnumber String maxlength(32),
+	weight Float,
+	weightUnits Boolean,
+	length Float,
+	lengthUnits Boolean,
+	width Float,
+	widthUnits Boolean,
+	height Float,
+	heightUnits Boolean,
+	surface Float,
+	surfaceUnits Boolean,
+	volume Float,
+	volumeUnits Boolean,
+	stock Double,
+	pmp Double required,
+	fifo Double,
+	lifo Double,
+	canvas String maxlength(32),
+	finished Boolean,
+	hidden Boolean,
+	importKey String maxlength(14),
+	modelPdf String maxlength(255),
+	fkPriceExpression Integer,
+	desiredstock Integer,
+	priceAutogen Boolean,
+	fkProject Integer
+}
+
+entity ProductAssociation {
+	rowid Integer required,
+	fkProductPere Integer required,
+	fkProductFils Integer required,
+	qty Double,
+	incdec Integer
+}
+
+entity ProductAttribute {
+	rowid Integer required,
+	ref String required maxlength(255),
+	label String required maxlength(255),
+	rang Integer required,
+	entity Integer required
+}
+
+entity ProductAttributeCombination {
+	rowid Integer required,
+	fkProductParent Integer required,
+	fkProductChild Integer required,
+	variationPrice Float required,
+	variationPricePercentage Integer,
+	variationWeight Float required,
+	entity Integer required
+}
+
+entity ProductAttributeCombination2val {
+	rowid Integer required,
+	fkProdCombination Integer required,
+	fkProdAttr Integer required,
+	fkProdAttrVal Integer required
+}
+
+entity ProductAttributeValue {
+	rowid Integer required,
+	fkProductAttribute Integer required,
+	ref String maxlength(255),
+	value String maxlength(255),
+	entity Integer required
+}
+
+entity ProductBatch {
+	rowid Integer required,
+	tms Instant required,
+	eatby Instant,
+	sellby Instant,
+	batch String maxlength(30),
+	qty Double required,
+	importKey String maxlength(14)
+}
+
+entity ProductCustomerPrice {
+	rowid Integer required,
+	entity Integer required,
+	datec Instant,
+	tms Instant required,
+	price Double,
+	priceTtc Double,
+	priceMin Double,
+	priceMinTtc Double,
+	priceBaseType String maxlength(3),
+	defaultVatCode String maxlength(10),
+	tvaTx Double,
+	recuperableonly Integer required,
+	localtax1Tx Double,
+	localtax1Type String required maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String required maxlength(10),
+	importKey String maxlength(14)
+}
+
+entity ProductCustomerPriceLog {
+	rowid Integer required,
+	entity Integer required,
+	datec Instant,
+	fkProduct Integer required,
+	fkSoc Integer required,
+	price Double,
+	priceTtc Double,
+	priceMin Double,
+	priceMinTtc Double,
+	priceBaseType String maxlength(3),
+	defaultVatCode String maxlength(10),
+	tvaTx Double,
+	recuperableonly Integer required,
+	localtax1Tx Double,
+	localtax1Type String required maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String required maxlength(10),
+	fkUser Integer,
+	importKey String maxlength(14)
+}
+
+entity ProductExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14),
+	productpar Integer
+}
+
+entity ProductFournisseurPrice {
+	rowid Integer required,
+	entity Integer required,
+	datec Instant,
+	tms Instant required,
+	fkSoc Integer,
+	refFourn String maxlength(30),
+	descFourn String maxlength(255),
+	fkAvailability Integer,
+	price Double,
+	quantity Double,
+	remisePercent Double required,
+	remise Double required,
+	unitprice Double,
+	charges Double,
+	defaultVatCode String maxlength(10),
+	tvaTx Double required,
+	infoBits Integer required,
+	fkSupplierPriceExpression Integer,
+	importKey String maxlength(14),
+	deliveryTimeDays Integer,
+	supplierReputation String maxlength(10),
+	multicurrencyTx Double,
+	multicurrencyUnitprice Double,
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyPrice Double,
+	localtax1Tx Double,
+	localtax1Type String required maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String required maxlength(10),
+	barcode String maxlength(180)
+}
+
+entity ProductFournisseurPriceLog {
+	rowid Integer required,
+	datec Instant,
+	fkProductFournisseur Integer required,
+	price Double,
+	quantity Double,
+	fkUser Integer,
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyPrice Double,
+	multicurrencyUnitprice Double
+}
+
+entity ProductLang {
+	rowid Integer required,
+	lang String required maxlength(5),
+	label String required maxlength(255),
+	description String maxlength(255),
+	note String maxlength(255),
+	importKey String maxlength(14)
+}
+
+entity ProductLot {
+	rowid Integer required,
+	entity Integer,
+	fkProduct Integer required,
+	batch String maxlength(30),
+	eatby LocalDate,
+	sellby LocalDate,
+	datec Instant,
+	tms Instant required,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	importKey Integer
+}
+
+entity ProductLotExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity ProductPrice {
+	rowid Integer required,
+	entity Integer required,
+	tms Instant required,
+	datePrice Instant,
+	priceLevel Integer,
+	price Double,
+	priceTtc Double,
+	priceMin Double,
+	priceMinTtc Double,
+	priceBaseType String maxlength(3),
+	defaultVatCode String maxlength(10),
+	tvaTx Double required,
+	recuperableonly Integer required,
+	localtax1Tx Double,
+	localtax1Type String required maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String required maxlength(10),
+	tosell Boolean,
+	priceByQty Integer required,
+	fkPriceExpression Integer,
+	importKey String maxlength(14),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyPrice Double,
+	multicurrencyTx Double,
+	multicurrencyPriceTtc Double
+}
+
+entity ProductPriceByQty {
+	rowid Integer required,
+	price Double,
+	quantity Double,
+	remisePercent Double required,
+	remise Double required,
+	unitprice Double,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	tms Instant required,
+	importKey String maxlength(14),
+	priceBaseType String maxlength(3),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyPrice Double,
+	multicurrencyPriceTtc Double
+}
+
+entity ProductPricerules {
+	rowid Integer required,
+	level Integer required,
+	fkLevel Integer required,
+	varPercent Float required,
+	varMinPercent Float required
+}
+
+entity ProductStock {
+	rowid Integer required,
+	tms Instant required,
+	fkProduct Integer required,
+	fkEntrepot Integer required,
+	reel Double,
+	importKey String maxlength(14)
+}
+
+entity ProductWarehouseProperties {
+	rowid Integer required,
+	tms Instant required,
+	fkProduct Integer required,
+	fkEntrepot Integer required,
+	seuilStockAlerte Integer,
+	desiredstock Integer,
+	importKey String maxlength(14)
+}
+
+entity Projet {
+	rowid Integer required,
+	datec Instant,
+	tms Instant required,
+	dateo LocalDate,
+	datee LocalDate,
+	ref String maxlength(50),
+	entity Integer required,
+	title String required maxlength(255),
+	description String maxlength(255),
+	fkUserCreat Integer required,
+	fkUserModif Integer,
+	public Integer,
+	fkStatut Integer required,
+	fkOppStatus Integer,
+	oppPercent Double,
+	dateClose Instant,
+	fkUserClose Integer,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	oppAmount Double,
+	budgetAmount Double,
+	modelPdf String maxlength(255),
+	importKey String maxlength(14),
+	billTime Integer
+}
+
+entity ProjetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity ProjetTask {
+	rowid Integer required,
+	ref String maxlength(50),
+	entity Integer required,
+	fkTaskParent Integer required,
+	datec Instant,
+	tms Instant required,
+	dateo Instant,
+	datee Instant,
+	datev Instant,
+	label String required maxlength(255),
+	description String maxlength(255),
+	durationEffective Double,
+	plannedWorkload Double,
+	progress Integer,
+	priority Integer,
+	fkStatut Integer required,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	rang Integer,
+	modelPdf String maxlength(255),
+	importKey String maxlength(14),
+	fkUserModif Integer
+}
+
+entity ProjetTaskExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity ProjetTaskTime {
+	rowid Integer required,
+	fkTask Integer required,
+	taskDate LocalDate,
+	taskDatehour Instant,
+	taskDateWithhour Integer,
+	taskDuration Double,
+	fkUser Integer,
+	thm Double,
+	invoiceId Integer,
+	invoiceLineId Integer,
+	importKey String maxlength(14),
+	note String maxlength(255),
+	datec LocalDate,
+	tms Instant required
+}
+
+entity Propal {
+	rowid Integer required,
+	ref String required maxlength(30),
+	entity Integer required,
+	refExt String maxlength(255),
+	refInt String maxlength(255),
+	refClient String maxlength(255),
+	tms Instant required,
+	datec Instant,
+	datep LocalDate,
+	finValidite Instant,
+	dateValid Instant,
+	dateCloture Instant,
+	fkUserModif Integer,
+	fkStatut Integer required,
+	price Double,
+	remisePercent Double,
+	remiseAbsolue Double,
+	remise Double,
+	totalHt Double,
+	tva Double,
+	localtax1 Double,
+	localtax2 Double,
+	total Double,
+	fkAccount Integer,
+	fkCurrency String maxlength(3),
+	fkCondReglement Integer,
+	fkModeReglement Integer,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	dateLivraison LocalDate,
+	fkShippingMethod Integer,
+	fkAvailability Integer,
+	fkInputReason Integer,
+	fkIncoterms Integer,
+	locationIncoterms String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	fkDeliveryAddress Integer,
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double,
+	lastMainDoc String maxlength(255)
+}
+
+entity PropalExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity PropalMergePdfProduct {
+	rowid Integer required,
+	fkProduct Integer required,
+	fileName String required maxlength(200),
+	lang String maxlength(5),
+	fkUserAuthor Integer,
+	fkUserMod Integer required,
+	datec Instant required,
+	tms Instant required,
+	importKey String maxlength(14)
+}
+
+entity Propaldet {
+	rowid Integer required,
+	fkParentLine Integer,
+	fkProduct Integer,
+	label String maxlength(255),
+	description String maxlength(255),
+	fkRemiseExcept Integer,
+	vatSrcCode String maxlength(10),
+	tvaTx Double,
+	localtax1Tx Double,
+	localtax1Type String maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String maxlength(10),
+	qty Double,
+	remisePercent Double,
+	remise Double,
+	price Double,
+	subprice Double,
+	totalHt Double,
+	totalTva Double,
+	totalLocaltax1 Double,
+	totalLocaltax2 Double,
+	totalTtc Double,
+	productType Integer,
+	dateStart Instant,
+	dateEnd Instant,
+	infoBits Integer,
+	buyPriceHt Double,
+	fkProductFournisseurPrice Integer,
+	specialCode Integer,
+	rang Integer,
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencySubprice Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double
+}
+
+entity PropaldetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Reception {
+	rowid Integer required,
+	tms Instant required,
+	ref String required maxlength(30),
+	entity Integer required,
+	fkSoc Integer required,
+	fkProjet Integer,
+	refExt String maxlength(30),
+	refInt String maxlength(30),
+	refSupplier String maxlength(30),
+	dateCreation Instant,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	dateValid Instant,
+	fkUserValid Integer,
+	dateDelivery Instant,
+	dateReception Instant,
+	fkShippingMethod Integer,
+	trackingNumber String maxlength(50),
+	fkStatut Integer,
+	billed Integer,
+	height Float,
+	width Float,
+	sizeUnits Integer,
+	size Float,
+	weightUnits Integer,
+	weight Float,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	fkIncoterms Integer,
+	locationIncoterms String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255)
+}
+
+entity ReceptionExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Resource {
+	rowid Integer required,
+	entity Integer required,
+	ref String maxlength(255),
+	assetNumber String maxlength(255),
+	description String maxlength(255),
+	fkCodeTypeResource String maxlength(32),
+	datec Instant,
+	dateValid Instant,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	fkUserValid Integer,
+	fkStatut Integer required,
+	notePublic String maxlength(255),
+	notePrivate String maxlength(255),
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	tms Instant required
+}
+
+entity ResourceExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity RightsDef {
+	id Integer required,
+	libelle String maxlength(255),
+	module String maxlength(64),
+	entity Integer required,
+	perms String maxlength(50),
+	subperms String maxlength(50),
+	type String maxlength(1),
+	bydefault Boolean
+}
+
+entity Societe {
+	rowid Integer required,
+	nom String maxlength(128),
+	nameAlias String maxlength(128),
+	entity Integer required,
+	refExt String maxlength(255),
+	refInt String maxlength(60),
+	statut Boolean,
+	parent Integer,
+	tms Instant required,
+	datec Instant,
+	status Boolean,
+	codeClient String maxlength(24),
+	codeFournisseur String maxlength(24),
+	codeCompta String maxlength(24),
+	codeComptaFournisseur String maxlength(24),
+	address String maxlength(255),
+	zip String maxlength(25),
+	town String maxlength(50),
+	fkDepartement Integer,
+	fkPays Integer,
+	fkAccount Integer,
+	phone String maxlength(20),
+	fax String maxlength(20),
+	url String maxlength(255),
+	email String maxlength(128),
+	skype String maxlength(255),
+	whatsapp String maxlength(255),
+	linkedin String maxlength(255),
+	youtube String maxlength(255),
+	googleplus String maxlength(255),
+	snapchat String maxlength(255),
+	instagram String maxlength(255),
+	facebook String maxlength(255),
+	twitter String maxlength(255),
+	fkEffectif Integer,
+	fkTypent Integer,
+	fkFormeJuridique Integer,
+	fkCurrency String maxlength(3),
+	siren String maxlength(128),
+	siret String maxlength(128),
+	ape String maxlength(128),
+	idprof4 String maxlength(128),
+	idprof5 String maxlength(128),
+	idprof6 String maxlength(128),
+	tvaIntra String maxlength(20),
+	capital Double,
+	fkStcomm Integer required,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	prefixComm String maxlength(5),
+	client Boolean,
+	fournisseur Boolean,
+	supplierAccount String maxlength(32),
+	fkProspectlevel String maxlength(12),
+	fkIncoterms Integer,
+	locationIncoterms String maxlength(255),
+	customerBad Boolean,
+	customerRate Double,
+	supplierRate Double,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	remiseClient Double,
+	remiseSupplier Double,
+	modeReglement Boolean,
+	condReglement Boolean,
+	modeReglementSupplier Boolean,
+	condReglementSupplier Boolean,
+	fkShippingMethod Integer,
+	tvaAssuj Boolean,
+	localtax1Assuj Boolean,
+	localtax1Value Double,
+	localtax2Assuj Boolean,
+	localtax2Value Double,
+	barcode String maxlength(255),
+	fkBarcodeType Integer,
+	priceLevel Integer,
+	outstandingLimit Double,
+	orderMinAmount Double,
+	supplierOrderMinAmount Double,
+	defaultLang String maxlength(6),
+	logo String maxlength(255),
+	canvas String maxlength(32),
+	importKey String maxlength(14),
+	webservicesUrl String maxlength(255),
+	webservicesKey String maxlength(128),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	fkEntrepot Integer
+}
+
+entity SocieteAccount {
+	rowid Integer required,
+	entity Integer,
+	keyAccount String maxlength(128),
+	login String required maxlength(128),
+	passEncoding String maxlength(24),
+	passCrypted String maxlength(128),
+	passTemp String maxlength(128),
+	site String maxlength(128),
+	notePrivate String maxlength(255),
+	dateLastLogin Instant,
+	datePreviousLogin Instant,
+	dateCreation Instant required,
+	tms Instant required,
+	fkUserCreat Integer required,
+	fkUserModif Integer,
+	importKey String maxlength(14),
+	status Integer
+}
+
+entity SocieteAddress {
+	rowid Integer required,
+	datec Instant,
+	tms Instant required,
+	label String maxlength(30),
+	fkSoc Integer,
+	name String maxlength(60),
+	address String maxlength(255),
+	zip String maxlength(10),
+	town String maxlength(50),
+	fkPays Integer,
+	phone String maxlength(20),
+	fax String maxlength(20),
+	note String maxlength(255),
+	fkUserCreat Integer,
+	fkUserModif Integer
+}
+
+entity SocieteCommerciaux {
+	rowid Integer required,
+	fkSoc Integer,
+	fkUser Integer,
+	importKey String maxlength(14)
+}
+
+entity SocieteExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity SocieteLog {
+	id Integer required,
+	datel Instant,
+	fkSoc Integer,
+	fkStatut Integer,
+	fkUser Integer,
+	author String maxlength(30),
+	label String maxlength(128)
+}
+
+entity SocietePrices {
+	rowid Integer required,
+	fkSoc Integer,
+	tms Instant required,
+	datec Instant,
+	fkUserAuthor Integer,
+	priceLevel Boolean
+}
+
+entity SocieteRemise {
+	rowid Integer required,
+	entity Integer required,
+	fkSoc Integer required,
+	tms Instant required,
+	datec Instant,
+	fkUserAuthor Integer,
+	remiseClient Double required,
+	note String maxlength(255)
+}
+
+entity SocieteRemiseExcept {
+	rowid Integer required,
+	entity Integer required,
+	discountType Integer required,
+	datec Instant,
+	amountHt Double required,
+	amountTva Double required,
+	amountTtc Double required,
+	tvaTx Double required,
+	description String required maxlength(255),
+	multicurrencyAmountHt Double required,
+	multicurrencyAmountTva Double required,
+	multicurrencyAmountTtc Double required,
+	fkInvoiceSupplierSource Integer
+}
+
+entity SocieteRemiseSupplier {
+	rowid Integer required,
+	entity Integer required,
+	fkSoc Integer required,
+	tms Instant required,
+	datec Instant,
+	fkUserAuthor Integer,
+	remiseSupplier Double required,
+	note String maxlength(255)
+}
+
+entity SocieteRib {
+	rowid Integer required,
+	type String required maxlength(32),
+	fkSoc Integer required,
+	datec Instant,
+	tms Instant required,
+	label String maxlength(30),
+	bank String maxlength(255),
+	codeBanque String maxlength(128),
+	codeGuichet String maxlength(6),
+	number String maxlength(255),
+	cleRib String maxlength(5),
+	bic String maxlength(20),
+	ibanPrefix String maxlength(34),
+	domiciliation String maxlength(255),
+	proprio String maxlength(60),
+	ownerAddress String maxlength(255),
+	defaultRib Integer required,
+	rum String maxlength(32),
+	dateRum LocalDate,
+	frstrecur String maxlength(16),
+	importKey String maxlength(14),
+	lastFour String maxlength(4),
+	cardType String maxlength(255),
+	cvn String maxlength(255),
+	expDateMonth Integer,
+	expDateYear Integer,
+	countryCode String maxlength(10),
+	approved Integer,
+	email String maxlength(255),
+	endingDate LocalDate,
+	maxTotalAmountOfAllPayments Double,
+	preapprovalKey String maxlength(255),
+	startingDate LocalDate,
+	totalAmountOfAllPayments Double,
+	stripeCardRef String maxlength(128),
+	status Integer required,
+	comment String maxlength(255),
+	ipaddress String maxlength(68)
+}
+
+entity Socpeople {
+	rowid Integer required,
+	datec Instant,
+	tms Instant required,
+	entity Integer required,
+	refExt String maxlength(255),
+	civility String maxlength(6),
+	lastname String maxlength(50),
+	firstname String maxlength(50),
+	address String maxlength(255),
+	zip String maxlength(25),
+	town String maxlength(255),
+	fkDepartement Integer,
+	fkPays Integer,
+	birthday LocalDate,
+	poste String maxlength(80),
+	phone String maxlength(30),
+	phonePerso String maxlength(30),
+	phoneMobile String maxlength(30),
+	fax String maxlength(30),
+	email String maxlength(255),
+	jabberid String maxlength(255),
+	skype String maxlength(255),
+	whatsapp String maxlength(255),
+	linkedin String maxlength(255),
+	youtube String maxlength(255),
+	googleplus String maxlength(255),
+	snapchat String maxlength(255),
+	instagram String maxlength(255),
+	facebook String maxlength(255),
+	twitter String maxlength(255),
+	photo String maxlength(255),
+	noEmail Integer required,
+	priv Integer required,
+	fkUserModif Integer,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	defaultLang String maxlength(6),
+	canvas String maxlength(32),
+	importKey String maxlength(14),
+	statut Boolean required
+}
+
+entity SocpeopleExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity StockMouvement {
+	rowid Integer required,
+	tms Instant required,
+	datem Instant,
+	fkProduct Integer required,
+	batch String maxlength(30),
+	eatby LocalDate,
+	sellby LocalDate,
+	fkEntrepot Integer required,
+	value Double,
+	price Double,
+	typeMouvement Integer,
+	fkUserAuthor Integer,
+	label String maxlength(255),
+	inventorycode String maxlength(128),
+	fkOrigin Integer,
+	origintype String maxlength(32),
+	modelPdf String maxlength(255),
+	fkProject Integer
+}
+
+entity Subscription {
+	rowid Integer required,
+	tms Instant required,
+	datec Instant,
+	fkAdherent Integer,
+	dateadh Instant,
+	datef LocalDate,
+	subscription Double,
+	fkBank Integer,
+	note String maxlength(255),
+	fkType Integer
+}
+
+entity SupplierProposal {
+	rowid Integer required,
+	ref String required maxlength(30),
+	entity Integer required,
+	refExt String maxlength(255),
+	refInt String maxlength(255),
+	fkSoc Integer,
+	fkProjet Integer,
+	tms Instant required,
+	datec Instant,
+	dateValid Instant,
+	dateCloture Instant,
+	fkUserAuthor Integer,
+	fkUserModif Integer,
+	fkUserValid Integer,
+	fkUserCloture Integer,
+	fkStatut Integer required,
+	price Double,
+	remisePercent Double,
+	remiseAbsolue Double,
+	remise Double,
+	totalHt Double,
+	tva Double,
+	localtax1 Double,
+	localtax2 Double,
+	total Double,
+	fkAccount Integer,
+	fkCurrency String maxlength(3),
+	fkCondReglement Integer,
+	fkModeReglement Integer,
+	notePrivate String maxlength(255),
+	notePublic String maxlength(255),
+	modelPdf String maxlength(255),
+	dateLivraison LocalDate,
+	fkShippingMethod Integer,
+	importKey String maxlength(14),
+	extraparams String maxlength(255),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencyTx Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double,
+	lastMainDoc String maxlength(255)
+}
+
+entity SupplierProposalExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity SupplierProposaldet {
+	rowid Integer required,
+	fkParentLine Integer,
+	fkProduct Integer,
+	label String maxlength(255),
+	description String maxlength(255),
+	fkRemiseExcept Integer,
+	vatSrcCode String maxlength(10),
+	tvaTx Double,
+	localtax1Tx Double,
+	localtax1Type String maxlength(10),
+	localtax2Tx Double,
+	localtax2Type String maxlength(10),
+	qty Double,
+	remisePercent Double,
+	remise Double,
+	price Double,
+	subprice Double,
+	totalHt Double,
+	totalTva Double,
+	totalLocaltax1 Double,
+	totalLocaltax2 Double,
+	totalTtc Double,
+	productType Integer,
+	infoBits Integer,
+	buyPriceHt Double,
+	fkProductFournisseurPrice Integer,
+	specialCode Integer,
+	rang Integer,
+	refFourn String maxlength(30),
+	fkMulticurrency Integer,
+	multicurrencyCode String maxlength(255),
+	multicurrencySubprice Double,
+	multicurrencyTotalHt Double,
+	multicurrencyTotalTva Double,
+	multicurrencyTotalTtc Double
+}
+
+entity SupplierProposaldetExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity TakeposFloorTables {
+	rowid Integer required,
+	entity Integer required,
+	label String maxlength(255),
+	leftpos Float,
+	toppos Float,
+	floor Integer
+}
+
+entity Ticket {
+	rowid Integer required,
+	entity Integer,
+	ref String required maxlength(128),
+	trackId String required maxlength(128),
+	fkSoc Integer,
+	fkProject Integer,
+	originEmail String maxlength(128),
+	fkUserCreate Integer,
+	fkUserAssign Integer,
+	subject String maxlength(255),
+	message String maxlength(255),
+	fkStatut Integer,
+	resolution Integer,
+	progress String maxlength(100),
+	timing String maxlength(20),
+	typeCode String maxlength(32),
+	categoryCode String maxlength(32),
+	severityCode String maxlength(32),
+	datec Instant,
+	dateRead Instant,
+	dateClose Instant,
+	notifyTiersAtCreate Boolean,
+	tms Instant required
+}
+
+entity TicketExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity Tva {
+	rowid Integer required,
+	tms Instant required,
+	datec LocalDate,
+	datep LocalDate,
+	datev LocalDate,
+	amount Double,
+	fkTypepayment Integer,
+	numPayment String maxlength(50),
+	label String maxlength(255),
+	entity Integer required,
+	note String maxlength(255),
+	fkBank Integer,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	importKey String maxlength(14)
+}
+
+entity User {
+	rowid Integer required,
+	entity Integer required,
+	refExt String maxlength(50),
+	refInt String maxlength(50),
+	employee Boolean,
+	fkEstablishment Integer,
+	datec Instant,
+	tms Instant required,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	login String required maxlength(50),
+	pass String maxlength(128),
+	passCrypted String maxlength(128),
+	passTemp String maxlength(128),
+	apiKey String maxlength(128),
+	gender String maxlength(10),
+	civility String maxlength(6),
+	lastname String maxlength(50),
+	firstname String maxlength(50),
+	address String maxlength(255),
+	zip String maxlength(25),
+	town String maxlength(50),
+	fkState Integer,
+	fkCountry Integer,
+	job String maxlength(128),
+	skype String maxlength(255),
+	officePhone String maxlength(20),
+	officeFax String maxlength(20),
+	userMobile String maxlength(20),
+	personalMobile String maxlength(20),
+	email String maxlength(255),
+	personalEmail String maxlength(255),
+	signature String maxlength(255),
+	admin Integer,
+	moduleComm Integer,
+	moduleCompta Integer,
+	fkSoc Integer,
+	fkSocpeople Integer,
+	fkMember Integer,
+	fkUser Integer,
+	fkUserExpenseValidator Integer,
+	fkUserHolidayValidator Integer,
+	notePublic String maxlength(255),
+	note String maxlength(255),
+	datelastlogin Instant,
+	datepreviouslogin Instant,
+	egroupwareId Integer,
+	ldapSid String maxlength(255),
+	openid String maxlength(255),
+	statut Boolean,
+	photo String maxlength(255),
+	lang String maxlength(6),
+	color String maxlength(6),
+	barcode String maxlength(255),
+	fkBarcodeType Integer,
+	accountancyCode String maxlength(32),
+	nbHoliday Integer,
+	thm Double,
+	tjm Double,
+	salary Double,
+	salaryextra Double,
+	dateemployment LocalDate,
+	weeklyhours Double,
+	importKey String maxlength(14),
+	modelPdf String maxlength(255),
+	birth LocalDate,
+	dateemploymentend LocalDate,
+	defaultRange Integer,
+	defaultCExpTaxCat Integer,
+	passEncoding String maxlength(24),
+	twitter String maxlength(255),
+	facebook String maxlength(255),
+	instagram String maxlength(255),
+	snapchat String maxlength(255),
+	googleplus String maxlength(255),
+	youtube String maxlength(255),
+	whatsapp String maxlength(255),
+	linkedin String maxlength(255),
+	fkWarehouse Integer
+}
+
+entity UserAlert {
+	rowid Integer required,
+	type Integer,
+	fkContact Integer,
+	fkUser Integer
+}
+
+entity UserClicktodial {
+	fkUser Integer required,
+	url String maxlength(255),
+	login String maxlength(32),
+	pass String maxlength(64),
+	poste String maxlength(20)
+}
+
+entity UserEmployment {
+	rowid Integer required,
+	entity Integer required,
+	ref String maxlength(50),
+	refExt String maxlength(50),
+	datec Instant,
+	tms Instant required,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	job String maxlength(128),
+	status Integer required,
+	salary Double,
+	salaryextra Double,
+	weeklyhours Double,
+	dateemployment LocalDate,
+	dateemploymentend LocalDate
+}
+
+entity UserExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity UserParam {
+	fkUser Integer required,
+	entity Integer required,
+	param String required maxlength(255),
+	value String required maxlength(255)
+}
+
+entity UserRib {
+	rowid Integer required,
+	fkUser Integer required,
+	entity Integer required,
+	datec Instant,
+	tms Instant required,
+	label String maxlength(30),
+	bank String maxlength(255),
+	codeBanque String maxlength(128),
+	codeGuichet String maxlength(6),
+	number String maxlength(255),
+	cleRib String maxlength(5),
+	bic String maxlength(11),
+	ibanPrefix String maxlength(34),
+	domiciliation String maxlength(255),
+	proprio String maxlength(60),
+	ownerAddress String maxlength(255)
+}
+
+entity UserRights {
+	rowid Integer required,
+	entity Integer required,
+	fkId Integer required
+}
+
+entity Usergroup {
+	rowid Integer required,
+	nom String required maxlength(255),
+	entity Integer required,
+	datec Instant,
+	tms Instant required,
+	note String maxlength(255),
+	modelPdf String maxlength(255)
+}
+
+entity UsergroupExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity UsergroupRights {
+	rowid Integer required,
+	entity Integer required,
+	fkId Integer required
+}
+
+entity UsergroupUser {
+	rowid Integer required,
+	entity Integer required
+}
+
+entity Website {
+	rowid Integer required,
+	entity Integer required,
+	ref String maxlength(128),
+	description String maxlength(255),
+	status Integer,
+	fkDefaultHome Integer,
+	virtualhost String maxlength(255),
+	dateCreation Instant,
+	dateModification Instant,
+	tms Instant required,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	importKey String maxlength(14),
+	maincolor String maxlength(16),
+	maincolorbis String maxlength(16)
+}
+
+entity WebsiteExtrafields {
+	rowid Integer required,
+	tms Instant required,
+	fkObject Integer required,
+	importKey String maxlength(14)
+}
+
+entity WebsitePage {
+	rowid Integer required,
+	pageurl String maxlength(255),
+	aliasalt String maxlength(255),
+	title String maxlength(255),
+	description String maxlength(255),
+	keywords String maxlength(255),
+	content TextBlob,
+	status Integer,
+	dateCreation Instant,
+	dateModification Instant,
+	tms Instant required,
+	fkUserCreat Integer,
+	fkUserModif Integer,
+	typeContainer String required maxlength(16),
+	lang String maxlength(6),
+	fkPage Integer,
+	grabbedFrom String maxlength(255),
+	htmlheader TextBlob,
+	importKey String maxlength(14),
+	image String maxlength(255)
+}
+
+entity TmpAccoutingAccount {
+	minid Integer,
+	maxid Integer,
+	accountNumber String required maxlength(32),
+	entity Integer required,
+	fkPcgVersion String required maxlength(32),
+	nb Long required
+}
+
+
+
+// Relations
+relationship ManyToOne {
+	AccountingAccount{fkPcgVersion required} to AccountingSystem{AccountingAccount}
+}
+
+relationship ManyToOne {
+	Adherent{fkAdherentType required} to AdherentType{Adherent}
+}
+
+relationship OneToOne {
+	Adherent{fkSoc} to Societe{Adherent}
+}
+
+relationship ManyToOne {
+	Asset{fkAssetType required} to AssetType{Asset}
+}
+
+relationship ManyToOne {
+	BankAccount{fkAccountancyJournal} to AccountingJournal{BankAccount}
+}
+
+relationship ManyToOne {
+	BomBom{fkUserCreat required} to User{BomBom}
+}
+
+relationship ManyToOne {
+	BomBomline{fkBom required} to BomBom{BomBomline}
+}
+
+relationship ManyToOne {
+	Boxes{box required} to BoxesDef{Boxes}
+}
+
+relationship ManyToOne {
+	BudgetLines{fkBudget required} to Budget{BudgetLines}
+}
+
+relationship ManyToOne {
+	CDepartements{fkRegion} to CRegions{CDepartements}
+}
+
+relationship ManyToOne {
+	CZiptown{fkCounty} to CDepartements{CZiptown}
+}
+
+relationship ManyToOne {
+	CZiptown{fkPays required} to CCountry{CZiptown}
+}
+
+relationship ManyToOne {
+	CategorieAccount{fkCategorie required} to Categorie{CategorieAccount}
+}
+
+relationship ManyToOne {
+	CategorieAccount{fkAccount required} to BankAccount{CategorieAccount}
+}
+
+relationship ManyToOne {
+	CategorieContact{fkCategorie required} to Categorie{CategorieContact}
+}
+
+relationship ManyToOne {
+	CategorieContact{fkSocpeople required} to Socpeople{CategorieContact}
+}
+
+relationship ManyToOne {
+	CategorieFournisseur{fkCategorie required} to Categorie{CategorieFournisseur}
+}
+
+relationship ManyToOne {
+	CategorieFournisseur{fkSoc required} to Societe{CategorieFournisseur}
+}
+
+relationship ManyToOne {
+	CategorieLang{fkCategory required} to Categorie{CategorieLang}
+}
+
+// TODO This is a pure ManyToMany relation (delete me and decide owner side)
+relationship ManyToMany {
+	CategorieMember{fkCategorie required} to Categorie{CategorieMember}
+}
+
+// TODO This is a pure ManyToMany relation (delete me and decide owner side)
+relationship ManyToMany {
+	CategorieMember{fkMember required} to Adherent{CategorieMember}
+}
+
+relationship ManyToOne {
+	CategorieProduct{fkCategorie required} to Categorie{CategorieProduct}
+}
+
+relationship ManyToOne {
+	CategorieProduct{fkProduct required} to Product{CategorieProduct}
+}
+
+relationship ManyToOne {
+	CategorieProject{fkCategorie required} to Categorie{CategorieProject}
+}
+
+relationship ManyToOne {
+	CategorieProject{fkProject required} to Projet{CategorieProject}
+}
+
+relationship ManyToOne {
+	CategorieSociete{fkCategorie required} to Categorie{CategorieSociete}
+}
+
+relationship ManyToOne {
+	CategorieSociete{fkSoc required} to Societe{CategorieSociete}
+}
+
+relationship ManyToOne {
+	CategorieUser{fkCategorie required} to Categorie{CategorieUser}
+}
+
+relationship ManyToOne {
+	CategorieUser{fkUser required} to User{CategorieUser}
+}
+
+relationship ManyToOne {
+	Commande{fkSoc required} to Societe{Commande}
+}
+
+relationship ManyToOne {
+	Commande{fkProjet} to Projet{Commande}
+}
+
+relationship ManyToOne {
+	Commande{fkUserAuthor} to User{Commande}
+}
+
+relationship ManyToOne {
+	Commande{fkUserValid} to User{Commande}
+}
+
+relationship ManyToOne {
+	Commande{fkUserCloture} to User{Commande}
+}
+
+relationship ManyToOne {
+	CommandeFournisseur{fkSoc required} to Societe{CommandeFournisseur}
+}
+
+relationship ManyToOne {
+	CommandeFournisseurdet{fkUnit} to CUnits{CommandeFournisseurdet}
+}
+
+relationship ManyToOne {
+	Commandedet{fkCommande required} to Commande{Commandedet}
+}
+
+relationship ManyToOne {
+	Commandedet{fkUnit} to CUnits{Commandedet}
+}
+
+relationship ManyToOne {
+	Contrat{fkSoc required} to Societe{Contrat}
+}
+
+relationship ManyToOne {
+	Contrat{fkUserAuthor required} to User{Contrat}
+}
+
+relationship ManyToOne {
+	Contratdet{fkContrat required} to Contrat{Contratdet}
+}
+
+relationship ManyToOne {
+	Contratdet{fkProduct} to Product{Contratdet}
+}
+
+relationship ManyToOne {
+	Contratdet{fkUnit} to CUnits{Contratdet}
+}
+
+relationship ManyToOne {
+	ContratdetLog{fkContratdet required} to Contratdet{ContratdetLog}
+}
+
+relationship ManyToOne {
+	EcmDirectories{fkUserC} to User{EcmDirectories}
+}
+
+relationship ManyToOne {
+	EcmDirectories{fkUserM} to User{EcmDirectories}
+}
+
+relationship ManyToOne {
+	ElementContact{fkCTypeContact required} to CTypeContact{ElementContact}
+}
+
+relationship ManyToOne {
+	EmailcollectorEmailcollectoraction{fkEmailcollector required} to EmailcollectorEmailcollector{EmailcollectorEmailcollectoraction}
+}
+
+relationship ManyToOne {
+	EmailcollectorEmailcollectorfilter{fkEmailcollector required} to EmailcollectorEmailcollector{EmailcollectorEmailcollectorfilter}
+}
+
+relationship ManyToOne {
+	Expedition{fkSoc required} to Societe{Expedition}
+}
+
+relationship ManyToOne {
+	Expedition{fkUserAuthor} to User{Expedition}
+}
+
+relationship ManyToOne {
+	Expedition{fkUserValid} to User{Expedition}
+}
+
+relationship ManyToOne {
+	Expedition{fkShippingMethod} to CShipmentMode{Expedition}
+}
+
+relationship ManyToOne {
+	Expeditiondet{fkExpedition required} to Expedition{Expeditiondet}
+}
+
+relationship ManyToOne {
+	ExpeditiondetBatch{fkExpeditiondet required} to Expeditiondet{ExpeditiondetBatch}
+}
+
+relationship ManyToOne {
+	Facture{fkSoc required} to Societe{Facture}
+}
+
+relationship ManyToOne {
+	Facture{fkUserAuthor} to User{Facture}
+}
+
+relationship ManyToOne {
+	Facture{fkUserValid} to User{Facture}
+}
+
+relationship ManyToOne {
+	Facture{fkFactureSource} to Facture{Facture}
+}
+
+relationship ManyToOne {
+	Facture{fkProjet} to Projet{Facture}
+}
+
+relationship ManyToOne {
+	FactureFourn{fkSoc required} to Societe{FactureFourn}
+}
+
+relationship ManyToOne {
+	FactureFourn{fkUserAuthor} to User{FactureFourn}
+}
+
+relationship ManyToOne {
+	FactureFourn{fkUserValid} to User{FactureFourn}
+}
+
+relationship ManyToOne {
+	FactureFourn{fkProjet} to Projet{FactureFourn}
+}
+
+relationship ManyToOne {
+	FactureFournDet{fkFactureFourn required} to FactureFourn{FactureFournDet}
+}
+
+relationship ManyToOne {
+	FactureFournDet{fkUnit} to CUnits{FactureFournDet}
+}
+
+relationship ManyToOne {
+	FactureRec{fkSoc required} to Societe{FactureRec}
+}
+
+relationship ManyToOne {
+	FactureRec{fkUserAuthor} to User{FactureRec}
+}
+
+relationship ManyToOne {
+	FactureRec{fkProjet} to Projet{FactureRec}
+}
+
+relationship ManyToOne {
+	Facturedet{fkFacture required} to Facture{Facturedet}
+}
+
+relationship ManyToOne {
+	Facturedet{fkUnit} to CUnits{Facturedet}
+}
+
+relationship ManyToOne {
+	FacturedetRec{fkUnit} to CUnits{FacturedetRec}
+}
+
+relationship ManyToOne {
+	Fichinter{fkSoc required} to Societe{Fichinter}
+}
+
+relationship ManyToOne {
+	Fichinterdet{fkFichinter} to Fichinter{Fichinterdet}
+}
+
+relationship ManyToOne {
+	Livraison{fkSoc required} to Societe{Livraison}
+}
+
+relationship ManyToOne {
+	Livraison{fkUserAuthor} to User{Livraison}
+}
+
+relationship ManyToOne {
+	Livraison{fkUserValid} to User{Livraison}
+}
+
+relationship ManyToOne {
+	Livraisondet{fkLivraison} to Livraison{Livraisondet}
+}
+
+relationship ManyToOne {
+	PaiementFacture{fkPaiement} to Paiement{PaiementFacture}
+}
+
+relationship ManyToOne {
+	PaiementFacture{fkFacture} to Facture{PaiementFacture}
+}
+
+relationship ManyToOne {
+	PaymentSalary{fkUser required} to User{PaymentSalary}
+}
+
+relationship ManyToOne {
+	PosFacture{fkCash required} to PosCash{PosFacture}
+}
+
+relationship ManyToOne {
+	PosFacture{fkPlace} to PosPlaces{PosFacture}
+}
+
+relationship ManyToOne {
+	PosFacture{fkControlCash} to PosControlCash{PosFacture}
+}
+
+relationship ManyToOne {
+	PosTicket{fkSoc required} to Societe{PosTicket}
+}
+
+relationship ManyToOne {
+	PosTicket{fkPlace} to PosPlaces{PosTicket}
+}
+
+relationship ManyToOne {
+	PosTicket{fkUserAuthor} to User{PosTicket}
+}
+
+relationship ManyToOne {
+	PrelevementFacture{fkPrelevementLignes required} to PrelevementLignes{PrelevementFacture}
+}
+
+relationship ManyToOne {
+	PrelevementLignes{fkPrelevementBons} to PrelevementBons{PrelevementLignes}
+}
+
+relationship ManyToOne {
+	Product{fkCountry} to CCountry{Product}
+}
+
+relationship ManyToOne {
+	Product{fkBarcodeType} to CBarcodeType{Product}
+}
+
+relationship ManyToOne {
+	Product{fkUnit} to CUnits{Product}
+}
+
+relationship ManyToOne {
+	Product{fkDefaultWarehouse} to Entrepot{Product}
+}
+
+relationship ManyToOne {
+	ProductBatch{fkProductStock required} to ProductStock{ProductBatch}
+}
+
+relationship ManyToOne {
+	ProductCustomerPrice{fkProduct required} to Product{ProductCustomerPrice}
+}
+
+relationship ManyToOne {
+	ProductCustomerPrice{fkSoc required} to Societe{ProductCustomerPrice}
+}
+
+relationship ManyToOne {
+	ProductCustomerPrice{fkUser} to User{ProductCustomerPrice}
+}
+
+relationship ManyToOne {
+	ProductFournisseurPrice{fkProduct} to Product{ProductFournisseurPrice}
+}
+
+relationship ManyToOne {
+	ProductFournisseurPrice{fkUser} to User{ProductFournisseurPrice}
+}
+
+relationship ManyToOne {
+	ProductFournisseurPrice{fkBarcodeType} to CBarcodeType{ProductFournisseurPrice}
+}
+
+relationship ManyToOne {
+	ProductLang{fkProduct required} to Product{ProductLang}
+}
+
+relationship ManyToOne {
+	ProductPrice{fkProduct required} to Product{ProductPrice}
+}
+
+relationship ManyToOne {
+	ProductPrice{fkUserAuthor} to User{ProductPrice}
+}
+
+relationship ManyToOne {
+	ProductPriceByQty{fkProductPrice required} to ProductPrice{ProductPriceByQty}
+}
+
+relationship ManyToOne {
+	Projet{fkSoc} to Societe{Projet}
+}
+
+relationship ManyToOne {
+	ProjetTask{fkProjet required} to Projet{ProjetTask}
+}
+
+relationship ManyToOne {
+	ProjetTask{fkUserCreat} to User{ProjetTask}
+}
+
+relationship ManyToOne {
+	ProjetTask{fkUserValid} to User{ProjetTask}
+}
+
+relationship ManyToOne {
+	Propal{fkSoc} to Societe{Propal}
+}
+
+relationship ManyToOne {
+	Propal{fkProjet} to Projet{Propal}
+}
+
+relationship ManyToOne {
+	Propal{fkUserAuthor} to User{Propal}
+}
+
+relationship ManyToOne {
+	Propal{fkUserValid} to User{Propal}
+}
+
+relationship ManyToOne {
+	Propal{fkUserCloture} to User{Propal}
+}
+
+relationship ManyToOne {
+	Propaldet{fkPropal required} to Propal{Propaldet}
+}
+
+relationship ManyToOne {
+	Propaldet{fkUnit} to CUnits{Propaldet}
+}
+
+relationship ManyToOne {
+	Resource{fkCountry} to CCountry{Resource}
+}
+
+relationship ManyToOne {
+	SocieteAccount{fkSoc} to Societe{SocieteAccount}
+}
+
+relationship ManyToOne {
+	SocieteAccount{fkWebsite} to Website{SocieteAccount}
+}
+
+relationship ManyToOne {
+	SocieteRemiseExcept{fkSoc required} to Societe{SocieteRemiseExcept}
+}
+
+relationship ManyToOne {
+	SocieteRemiseExcept{fkUser required} to User{SocieteRemiseExcept}
+}
+
+relationship ManyToOne {
+	SocieteRemiseExcept{fkFactureLine} to Facturedet{SocieteRemiseExcept}
+}
+
+relationship ManyToOne {
+	SocieteRemiseExcept{fkFacture} to Facture{SocieteRemiseExcept}
+}
+
+relationship ManyToOne {
+	SocieteRemiseExcept{fkFactureSource} to Facture{SocieteRemiseExcept}
+}
+
+relationship ManyToOne {
+	SocieteRemiseExcept{fkInvoiceSupplierLine} to FactureFournDet{SocieteRemiseExcept}
+}
+
+relationship ManyToOne {
+	SocieteRemiseExcept{fkInvoiceSupplier} to FactureFourn{SocieteRemiseExcept}
+}
+
+relationship ManyToOne {
+	Socpeople{fkSoc} to Societe{Socpeople}
+}
+
+relationship ManyToOne {
+	Socpeople{fkUserCreat} to User{Socpeople}
+}
+
+relationship ManyToOne {
+	SupplierProposaldet{fkSupplierProposal required} to SupplierProposal{SupplierProposaldet}
+}
+
+relationship ManyToOne {
+	SupplierProposaldet{fkUnit} to CUnits{SupplierProposaldet}
+}
+
+relationship ManyToOne {
+	UserEmployment{fkUser} to User{UserEmployment}
+}
+
+relationship ManyToOne {
+	UserRights{fkUser required} to User{UserRights}
+}
+
+relationship ManyToOne {
+	UsergroupRights{fkUsergroup required} to Usergroup{UsergroupRights}
+}
+
+relationship ManyToOne {
+	UsergroupUser{fkUser required} to User{UsergroupUser}
+}
+
+relationship ManyToOne {
+	UsergroupUser{fkUsergroup required} to Usergroup{UsergroupUser}
+}
+
+relationship ManyToOne {
+	WebsitePage{fkWebsite required} to Website{WebsitePage}
+}
+
+
+
+// Options
+service * with serviceClass
+paginate * with pagination
+dto * with mapstruct
+filter *
+
